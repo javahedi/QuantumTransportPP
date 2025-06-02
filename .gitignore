@@ -1,0 +1,23 @@
+# Build files
+/build/
+/CMakeFiles/
+/Makefile
+/CMakeCache.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Output or logs
+/output/
+*.out
+*.log
+*.dat
+*.csv
+
+# OS-specific
+.DS_Store
+
