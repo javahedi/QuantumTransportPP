@@ -124,7 +124,7 @@ MIT License. See `LICENSE` file.
 
 ## 🧠 Acknowledgments
 
-Inspired by the quantum geometry formalism, semiclassical theory, and nonlinear response frameworks developed in works by Nagaosa, Xiao, Sodemann, Morimoto, and others.
+Inspired by the quantum geometry formalism, semiclassical theory, and nonlinear response frameworks.
 
 ---
 
