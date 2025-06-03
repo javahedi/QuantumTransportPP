@@ -16,6 +16,17 @@
 - 📊 Example Jupyter notebooks for reproducible plots
 
 ---
+## Tight-binding models
+
+| Model               | Type                 | Key Features                             |
+| ------------------- | -------------------- | ---------------------------------------- |
+| **Kane-Mele**       | 2D Topological       | SOC + sublattice potential               |
+| **BHZ Model**       | 2D Quantum Spin Hall | 4×4 Dirac-like                           |
+| **Weyl Model**      | 3D Topological       | Linear crossings, chirality              |
+| **Graphene**        | 2D Semimetal         | Simple honeycomb TB                      |
+| **Chern Insulator** | 2-band               | Trivial/Topological phase tuning         |
+| **Haldane**         | 2D Chern Insulator   | Complex hopping, breaks TRS, topological |
+
 
 ## 📦 Installation
 
