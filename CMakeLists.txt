@@ -17,6 +17,7 @@ set(SOURCES
     src/hamiltonian.cpp
     src/boltzmann.cpp
     src/kubo.cpp
+    src/dos.cpp
 )
 
 # add test executable
@@ -25,4 +26,5 @@ add_executable(test_bandstructure tests/test_bandstructure.cpp ${SOURCES})
 add_executable(test_berry tests/test_berry.cpp ${SOURCES})
 add_executable(test_boltzmann tests/test_boltzmann.cpp ${SOURCES})
 add_executable(test_kubo tests/test_kubo.cpp ${SOURCES})
+add_executable(test_dos tests/test_dos.cpp ${SOURCES})
 
