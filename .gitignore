@@ -1,24 +1,20 @@
-# Build files
-/build/
-/CMakeFiles/
-/Makefile
-/CMakeCache.txt
+# CMake and build files
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
 
-# Python cache
-__pycache__/
-*.pyc
+# IDE/project files
+*.swp
+*.DS_Store
+*.idea/
+*.vscode/
 
-# Jupyter notebooks
-.ipynb_checkpoints/
-
-# Output or logs
-/output/
+# Binaries
+*.o
+*.so
+*.a
+*.exe
 *.out
-*.log
-*.dat
-*.csv
-
-# OS-specific
-.DS_Store
-
-.vscode
+*.bin
