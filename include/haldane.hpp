@@ -3,6 +3,8 @@
 #include <complex>
 #include <cmath>
 
+/// @brief Haldane model for a two-dimensional topological insulator
+/// @file haldane.hpp
 class HaldaneModel : public Hamiltonian {
 public:
     double t1;     // NN hopping
@@ -10,10 +12,17 @@ public:
     double phi;    // NNN complex phase
     double M;      // sublattice mass
 
-    // Constructor with default parameters
+    /// @brief Constructor with default parameters
+    /// @param t1 NN hopping amplitude
+    /// @param t2 NNN hopping amplitude
+    /// @param phi NNN complex phase
+    /// @param M sublattice mass
+    /// @note Default values: t1 = 1.0, t2 = 0.1, phi = π/2, M = 0.2
+    /// @details The Haldane model describes a two-dimensional topological insulator with a non-trivial band structure.
     HaldaneModel(double t1 = 1.0, double t2 = 0.1, double phi = M_PI / 2.0, double M = 0.2)
         : t1(t1), t2(t2), phi(phi), M(M) {}
 
+    /// @brief Return the Hamiltonian matrix H(k) at wavevector k
     Mat Hk(const Vec& k) const override {
         using namespace std::complex_literals;
         using std::cos, std::sin;

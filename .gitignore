@@ -18,3 +18,10 @@ Makefile
 *.exe
 *.out
 *.bin
+
+# Logs
+*.log
+# Temporary files
+*.tmp
+
+/docs

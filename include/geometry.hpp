@@ -7,6 +7,11 @@
 /*
 (Fukui-Hatsugai-Suzuki) or discretized Berry curvature.
 */
+/// @brief Calculate the Berry curvature at a given k-point using the discretized formula
+/// @param H Hamiltonian object
+/// @param k k-point in reciprocal space
+/// @param dk small displacement in k-space for numerical differentiation
+/// @param band_index index of the band for which to calculate the Berry curvature
 inline double berryCurvature(const Hamiltonian& H, const Eigen::Vector3d& k, double dk = 1e-3, int band_index = 0) {
     using Vec = Eigen::Vector3d;
     using std::arg, std::abs;
