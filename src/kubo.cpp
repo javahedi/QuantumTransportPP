@@ -18,45 +18,39 @@ Eigen::Matrix3d KuboSolver::conductivity(double Ef, double T) {
     using std::complex;
 
     const double kB = 8.617333262e-5; // eV/K
-    double beta = 1.0 / (temperature_in_kelvin ? (kB * T) : T); // Unitless if T not in K
+    double beta = 1.0 / (temperature_in_kelvin ? (kB * T) : T);
 
     Matrix3d sigma = Matrix3d::Zero();
     VectorXd evals;
     MatrixXcd evecs;
-    const double hbar = 1.0; // Unitless
-    const double prefactor = 2.0 * M_PI; // 2πe²/hbar omitted for unitless
+    const double prefactor = 2.0 * M_PI; // Unitless version of prefactor
 
     for (const auto& k : mesh.getKPoints()) {
         H.eigensystem(k, evals, evecs);
         int N = evals.size();
 
-        // Compute velocity operator matrices numerically
-        std::array<VectorXcd, 3> vel;
+        // Compute full velocity operator matrices v_i(n, m) = <n|∂H/∂k_i|m>
+        std::array<MatrixXcd, 3> v;
         for (int i = 0; i < 3; ++i) {
             Vector3d dk = Vector3d::Zero();
             dk(i) = 1e-5;
-            MatrixXcd H_plus = H.Hk(k + dk);
-            MatrixXcd H_minus = H.Hk(k - dk);
-            MatrixXcd dH = (H_plus - H_minus) / (2.0 * dk(i));
-
-            vel[i] = VectorXcd(N);
-            for (int m = 0; m < N; ++m) {
-                vel[i](m) = (evecs.col(m).adjoint() * dH * evecs.col(m))(0, 0);
-            }
+            MatrixXcd dH = (H.Hk(k + dk) - H.Hk(k - dk)) / (2.0 * dk(i));
+            v[i] = evecs.adjoint() * dH * evecs;  // transformed to eigenbasis
         }
 
-        // Double sum over bands
+        // Kubo formula sum over bands
         for (int n = 0; n < N; ++n) {
             for (int m = 0; m < N; ++m) {
                 if (n == m) continue;
+
                 double deltaE = evals[n] - evals[m];
                 double f_diff = fermi(evals[n], Ef, beta) - fermi(evals[m], Ef, beta);
                 double denom = deltaE * deltaE + eta * eta;
 
                 for (int i = 0; i < 3; ++i) {
                     for (int j = 0; j < 3; ++j) {
-                        complex<double> vnm_i = (evecs.col(n).adjoint() * (evecs.col(m) * vel[i](m).real()))(0, 0);
-                        complex<double> vmn_j = (evecs.col(m).adjoint() * (evecs.col(n) * vel[j](n).real()))(0, 0);
+                        complex<double> vnm_i = v[i](n, m);
+                        complex<double> vmn_j = v[j](m, n);
                         sigma(i, j) += (f_diff * std::imag(vnm_i * vmn_j)) / denom;
                     }
                 }
@@ -65,5 +59,10 @@ Eigen::Matrix3d KuboSolver::conductivity(double Ef, double T) {
     }
 
     sigma *= (prefactor / mesh.size()) * energy_scale * energy_scale;
+
+    // To get conductance in units of e^2/h , you could multiply by:
+    const double e2_over_h = 1.0 / (2 * M_PI);  // ≈ 0.1592
+    sigma *= e2_over_h;
+
     return sigma;
 }

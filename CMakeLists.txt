@@ -21,8 +21,14 @@ add_library(QtTransportLib STATIC ${SOURCES})
 
 
 # Example executables for demos
-add_executable(run_haldane examples/run_haldane.cpp)
-target_link_libraries(run_haldane QtTransportLib)
+add_executable(run_all examples/run_all.cpp)
+target_link_libraries(run_all QtTransportLib)
+
+add_executable(transport_phi_haldane examples/transport_phi_haldane.cpp)
+target_link_libraries(transport_phi_haldane QtTransportLib)
+
+add_executable(altermagnet_berry examples/altermagnet_berry.cpp)
+target_link_libraries(altermagnet_berry QtTransportLib)
 
 # Test executables
 add_executable(test_mesh tests/test_mesh.cpp)
@@ -42,6 +48,9 @@ target_link_libraries(test_boltzmann QtTransportLib)
 
 add_executable(test_kubo tests/test_kubo.cpp)
 target_link_libraries(test_kubo QtTransportLib)
+
+
+
 
 # ===== Test Executables =====
 #add_executable(test_mesh tests/test_mesh.cpp ${SOURCES})

@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "AltermagnetModel", "class_altermagnet_model.html", "class_altermagnet_model" ],
     [ "BandStructure", "class_band_structure.html", "class_band_structure" ],
     [ "BoltzmannSolver", "class_boltzmann_solver.html", "class_boltzmann_solver" ],
     [ "DOS", "class_d_o_s.html", "class_d_o_s" ],

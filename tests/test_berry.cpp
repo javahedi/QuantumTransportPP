@@ -9,7 +9,7 @@ int main() {
     Mesh mesh(10, 10);
 
     for (const auto& k : mesh.getKPoints()) {
-        double Omega = berryCurvature(model, k);
+        double Omega = berryCurvatureFHS(model, k);
         std::cout << k.head<2>().transpose() << " " << Omega << std::endl;
     }
 }

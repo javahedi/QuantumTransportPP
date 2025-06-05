@@ -56,7 +56,7 @@ Eigen::Vector3d BoltzmannSolver::velocity(const Eigen::Vector3d& k, int band, co
     }
 
     // Get Berry curvature for band
-    double omega_z = berryCurvature(H, k); // You could generalize to 3D later
+    double omega_z = berryCurvatureDifferential(H, k); // You could generalize to 3D later
     Eigen::Vector3d omega(0, 0, omega_z);
 
     // Anomalous velocity: -E × Ω

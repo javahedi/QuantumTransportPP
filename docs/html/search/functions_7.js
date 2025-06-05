@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mesh_0',['Mesh',['../class_mesh.html#ac3465297f6ecb00410b1ba0ce1f177e1',1,'Mesh']]]
+  ['kanemelemodel_0',['KaneMeleModel',['../class_kane_mele_model.html#a91404f7a1f482ad9ced46c213d919a1a',1,'KaneMeleModel']]],
+  ['kubosolver_1',['KuboSolver',['../class_kubo_solver.html#a6a694927d05936deb6c897213c383d21',1,'KuboSolver']]]
 ];

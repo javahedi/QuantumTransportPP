@@ -8,12 +8,9 @@
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <complex>}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
 \DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00008\ \textcolor{comment}{(Fukui-\/Hatsugai-\/Suzuki)\ or\ discretized\ Berry\ curvature.}}
-\DoxyCodeLine{00009\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ berryCurvature(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \textcolor{keywordtype}{double}\ dk\ =\ 1e-\/3,\ \textcolor{keywordtype}{int}\ band\_index\ =\ 0)\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ berryCurvatureFHS(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \textcolor{keywordtype}{double}\ dk\ =\ 1e-\/3,\ \textcolor{keywordtype}{int}\ band\_index\ =\ 0)\ \{}
 \DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }Vec\ =\ Eigen::Vector3d;}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }std::arg,\ std::abs;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }std::arg;}
 \DoxyCodeLine{00018\ }
 \DoxyCodeLine{00019\ \ \ \ \ Eigen::MatrixXcd\ u0,\ ux,\ uy,\ uxy;}
 \DoxyCodeLine{00020\ \ \ \ \ Eigen::VectorXd\ evals;}
@@ -24,17 +21,92 @@
 \DoxyCodeLine{00025\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k\ +\ Vec(dk,\ dk,\ 0),\ evals,\ uxy);}
 \DoxyCodeLine{00026\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k\ +\ Vec(0,\ dk,\ 0),\ evals,\ uy);}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Link\ variables\ (U(1)\ Wilson\ lines)}}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{auto}\ U1\ =\ (u0.col(band\_index).adjoint()\ *\ ux.col(band\_index)).normalized();}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{auto}\ U2\ =\ (ux.col(band\_index).adjoint()\ *\ uxy.col(band\_index)).normalized();}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{auto}\ U3\ =\ (uxy.col(band\_index).adjoint()\ *\ uy.col(band\_index)).normalized();}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{auto}\ U4\ =\ (uy.col(band\_index).adjoint()\ *\ u0.col(band\_index)).normalized();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Link\ variables\ (complex\ overlaps)}}
+\DoxyCodeLine{00029\ \ \ \ \ std::complex<double>\ U1\ =\ u0.col(band\_index).adjoint()\ *\ ux.col(band\_index);}
+\DoxyCodeLine{00030\ \ \ \ \ std::complex<double>\ U2\ =\ ux.col(band\_index).adjoint()\ *\ uxy.col(band\_index);}
+\DoxyCodeLine{00031\ \ \ \ \ std::complex<double>\ U3\ =\ uxy.col(band\_index).adjoint()\ *\ uy.col(band\_index);}
+\DoxyCodeLine{00032\ \ \ \ \ std::complex<double>\ U4\ =\ uy.col(band\_index).adjoint()\ *\ u0.col(band\_index);}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Wilson\ loop\ and\ Berry\ curvature}}
-\DoxyCodeLine{00035\ \ \ \ \ std::complex<double>\ loop\ =\ U1\ *\ U2\ *\ U3\ *\ U4;}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ curvature\ =\ arg(loop)\ /\ (dk\ *\ dk);}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ curvature;}
-\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ 🔒\ Safety:\ avoid\ unreliable\ overlaps\ (near\ orthogonal\ eigenstates)}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{double}\ eps\ =\ 1e-\/12;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(U1)\ <\ eps\ ||\ std::abs(U2)\ <\ eps\ ||\ std::abs(U3)\ <\ eps\ ||\ std::abs(U4)\ <\ eps)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ 🔒\ Optional:\ skip\ problematic\ symmetry\ points}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//if\ ((k.array().abs()\ >\ M\_PI\ -\/\ 1e-\/6).any())\ return\ 0.0;}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Wilson\ loop\ and\ Berry\ curvature}}
+\DoxyCodeLine{00044\ \ \ \ \ std::complex<double>\ loop\ =\ U1\ *\ U2\ *\ U3\ *\ U4;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{double}\ phase\ =\ arg(loop);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Optional\ unwrap\ (in\ practice\ arg()\ is\ already\ in\ [-\/π,\ π])}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (phase\ >\ M\_PI)\ phase\ -\/=\ 2\ *\ M\_PI;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (phase\ <\ -\/M\_PI)\ phase\ +=\ 2\ *\ M\_PI;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ phase\ /\ (dk\ *\ dk);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{double}\ curvature\ =\ phase\ /\ (dk\ *\ dk);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ BMAX\ =\ 1e2;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(curvature)\ >\ BMAX)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ curvature\ =\ (curvature\ >\ 0\ ?\ BMAX\ :\ -\/BMAX);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ curvature;}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ Eigen::MatrixXcd\ dHdk(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \textcolor{keywordtype}{int}\ direction,\ \textcolor{keywordtype}{double}\ dk)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }Vec\ =\ Eigen::Vector3d;}
+\DoxyCodeLine{00066\ \ \ \ \ Eigen::MatrixXcd\ H\_plus\ =\ H.\mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hk}}(k\ +\ dk\ *\ Vec(direction\ ==\ 0,\ direction\ ==\ 1,\ 0));}
+\DoxyCodeLine{00067\ \ \ \ \ Eigen::MatrixXcd\ H\_minus\ =\ H.\mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hk}}(k\ -\/\ dk\ *\ Vec(direction\ ==\ 0,\ direction\ ==\ 1,\ 0));}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ (H\_plus\ -\/\ H\_minus)\ /\ (2.0\ *\ dk);}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ berryCurvatureDifferential(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \ \textcolor{keywordtype}{double}\ dk\ =\ 1e-\/3,\ \textcolor{keywordtype}{int}\ band\_index\ =\ 0)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }Mat\ =\ Eigen::MatrixXcd;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }Vec\ =\ Eigen::Vector3d;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ Eigen::MatrixXcd\ Hk\ =\ H.\mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hk}}(k);}
+\DoxyCodeLine{00078\ \ \ \ \ Eigen::VectorXd\ evals;}
+\DoxyCodeLine{00079\ \ \ \ \ Eigen::MatrixXcd\ evecs;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k,\ evals,\ evecs);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Compute\ numerical\ derivatives\ ∂H/∂kx\ and\ ∂H/∂ky}}
+\DoxyCodeLine{00084\ \ \ \ \ Mat\ dHdkx\ =\ dHdk(H,\ k,\ 0,\ dk);}
+\DoxyCodeLine{00085\ \ \ \ \ Mat\ dHdky\ =\ dHdk(H,\ k,\ 1,\ dk);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ std::complex<double>\ omega\ =\ 0.0;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ u\_n\ =\ evecs.col(band\_index);}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{double}\ E\_n\ =\ evals(band\_index);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 0;\ m\ <\ evecs.cols();\ ++m)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ ==\ band\_index)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ u\_m\ =\ evecs.col(m);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ E\_m\ =\ evals(m);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ std::complex<double>\ vx\_nm\ =\ u\_n.adjoint()\ *\ dHdkx\ *\ u\_m;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ std::complex<double>\ vy\_mn\ =\ u\_m.adjoint()\ *\ dHdky\ *\ u\_n;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ (std::abs(E\_n\ -\/\ E\_m)\ <\ 1e-\/6)\ continue;\ \ //\ skip\ nearly\ degenerate\ bands}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ epsi\ =\ 1e-\/6;\ \ \textcolor{comment}{//\ small\ positive\ number\ to\ avoid\ division\ by\ zero}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ denom\ =\ std::pow(E\_n\ -\/\ E\_m,\ 2)\ +\ epsi;\ \ \textcolor{comment}{//\ ε\ =\ 1e-\/6\ or\ smaller}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ omega\ +=\ vx\_nm\ *\ vy\_mn\ /\ std::pow(E\_n\ -\/\ E\_m,\ 2);}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{double}\ curvature\ =\ -\/2.0\ *\ std::imag(omega);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ BMAX\ =\ 1e2;}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(curvature)\ >\ BMAX)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ curvature\ =\ (curvature\ >\ 0\ ?\ BMAX\ :\ -\/BMAX);}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ curvature;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ }
+\DoxyCodeLine{00115\ \}}
 
 \end{DoxyCode}

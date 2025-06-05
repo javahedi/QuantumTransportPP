@@ -1,0 +1,78 @@
+\doxysection{altermagnet.\+hpp}
+\hypertarget{altermagnet_8hpp_source}{}\label{altermagnet_8hpp_source}\index{include/altermagnet.hpp@{include/altermagnet.hpp}}
+\mbox{\hyperlink{altermagnet_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }Eigen;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }std::complex;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_altermagnet_model_a2d03e6ca5ab43b1604ca3d6b68d443f6}{AltermagnetModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_altermagnet_model_a2d03e6ca5ab43b1604ca3d6b68d443f6}{AltermagnetModel}}(\textcolor{keywordtype}{double}\ t\ =\ 1.0,\ \textcolor{keywordtype}{double}\ J\ =\ 0.1,\ \textcolor{keywordtype}{double}\ lambda\ =\ 0.2)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ :\ t(t),\ J(J),\ lambda(lambda)\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00025\ \ \ \ \ Mat\ \mbox{\hyperlink{class_altermagnet_model_ad2df36afb86f114af3c7674a37af7436}{Hk}}(\textcolor{keyword}{const}\ Vec\&\ k)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std::complex\_literals;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::cos,\ std::sin;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ components\ of\ the\ wavevector\ k}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ kx\ =\ k(0),\ ky\ =\ k(1);}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scalar\ hopping\ (times\ identity\ matrix)}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ eps\ =\ -\/2.0\ *\ t\ *\ (cos(kx)\ +\ cos(ky));}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Altermagnetic\ anisotropic\ spin\ splitting}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_z\ =\ J\ *\ (cos(kx)\ -\/\ cos(ky));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Optional\ spin-\/orbit\ terms}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_x\ =\ lambda\ *\ sin((kx\ +\ ky)\ /\ 2.0);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_y\ =\ lambda\ *\ sin((ky\ -\/\ kx)\ /\ 2.0);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ Hamiltonian:\ H\ =\ eps\ *\ σ₀\ +\ d\ ⋅\ σ}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Mat\ H\ =\ Mat::Zero(2,\ 2);\ \ \textcolor{comment}{//\ Initialize\ a\ 2x2\ matrix}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ H\ +=\ eps\ *\ Mat::Identity(2,\ 2);\ \textcolor{comment}{//\ Scalar\ }}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ H\ +=\ d\_x\ *\ \mbox{\hyperlink{class_altermagnet_model_a08e3d14025e81c010c9957cac2307a89}{sigma\_x}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ H\ +=\ d\_y\ *\ \mbox{\hyperlink{class_altermagnet_model_a4c190aca99dbf59b256dd655fb070e02}{sigma\_y}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ H\ +=\ d\_z\ *\ \mbox{\hyperlink{class_altermagnet_model_a3972c82a8e3ff2eceb58576370d0db02}{sigma\_z}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ H;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{double}\ t;\ \ \ \ \ \ \textcolor{comment}{//\ Hopping\ amplitude}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{double}\ J;\ \ \ \ \ \ \textcolor{comment}{//\ Spin\ splitting\ parameter}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{double}\ lambda;\ \textcolor{comment}{//\ Spin-\/orbit\ coupling\ strength}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ Mat\ \mbox{\hyperlink{class_altermagnet_model_a08e3d14025e81c010c9957cac2307a89}{sigma\_x}}()\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ Mat\ m(2,\ 2);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ m\ <<\ 0,\ 1,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ Mat\ \mbox{\hyperlink{class_altermagnet_model_a4c190aca99dbf59b256dd655fb070e02}{sigma\_y}}()\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ Mat\ m(2,\ 2);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ m\ <<\ 0,\ -\/std::complex<double>(0,1),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::complex<double>(0,1),\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ Mat\ \mbox{\hyperlink{class_altermagnet_model_a3972c82a8e3ff2eceb58576370d0db02}{sigma\_z}}()\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Mat\ m(2,\ 2);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ m\ <<\ 1,\ 0,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ -\/1;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \};}
+
+\end{DoxyCode}

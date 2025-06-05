@@ -1,0 +1,102 @@
+\doxysection{Altermagnet\+Model Class Reference}
+\hypertarget{class_altermagnet_model}{}\label{class_altermagnet_model}\index{AltermagnetModel@{AltermagnetModel}}
+
+
+Inheritance diagram for Altermagnet\+Model\+:
+% FIG 0
+
+
+Collaboration diagram for Altermagnet\+Model\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_altermagnet_model_a2d03e6ca5ab43b1604ca3d6b68d443f6}{Altermagnet\+Model}} (double t=1.\+0, double J=0.\+1, double lambda=0.\+2)
+\begin{DoxyCompactList}\small\item\em Constructor with default parameters. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_altermagnet_model_ad2df36afb86f114af3c7674a37af7436}{Hk}} (const Vec \&k) const override
+\begin{DoxyCompactList}\small\item\em Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries eigensystem} (const Vec \&k, Eigen\+::\+Vector\+Xd \&evals, Eigen\+::\+Matrix\+Xcd \&evecs) const
+\begin{DoxyCompactList}\small\item\em Return the eigenvalues and eigenvectors of H(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_altermagnet_model_a08e3d14025e81c010c9957cac2307a89}\label{class_altermagnet_model_a08e3d14025e81c010c9957cac2307a89} 
+static Mat {\bfseries sigma\+\_\+x} ()
+\begin{DoxyCompactList}\small\item\em Pauli matrices \textbackslash{}sigma\+\_\+x. \end{DoxyCompactList}\item 
+\Hypertarget{class_altermagnet_model_a4c190aca99dbf59b256dd655fb070e02}\label{class_altermagnet_model_a4c190aca99dbf59b256dd655fb070e02} 
+static Mat {\bfseries sigma\+\_\+y} ()
+\begin{DoxyCompactList}\small\item\em Pauli matrices \textbackslash{}sigma\+\_\+y. \end{DoxyCompactList}\item 
+\Hypertarget{class_altermagnet_model_a3972c82a8e3ff2eceb58576370d0db02}\label{class_altermagnet_model_a3972c82a8e3ff2eceb58576370d0db02} 
+static Mat {\bfseries sigma\+\_\+z} ()
+\begin{DoxyCompactList}\small\item\em Pauli matrices \textbackslash{}sigma\+\_\+z. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_altermagnet_model_adebfdd3a25674033205c6a3bcc517e59}\label{class_altermagnet_model_adebfdd3a25674033205c6a3bcc517e59} 
+double {\bfseries t}
+\item 
+\Hypertarget{class_altermagnet_model_a797ff3e9d83858e06a46436fda3b07e2}\label{class_altermagnet_model_a797ff3e9d83858e06a46436fda3b07e2} 
+double {\bfseries J}
+\item 
+\Hypertarget{class_altermagnet_model_a94e6dd108d5a627ad942a96b17c9cd4d}\label{class_altermagnet_model_a94e6dd108d5a627ad942a96b17c9cd4d} 
+double {\bfseries lambda}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\item 
+using {\bfseries Mat} = Eigen\+::\+Matrix\+Xcd
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_altermagnet_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_altermagnet_model_a2d03e6ca5ab43b1604ca3d6b68d443f6}\index{AltermagnetModel@{AltermagnetModel}!AltermagnetModel@{AltermagnetModel}}
+\index{AltermagnetModel@{AltermagnetModel}!AltermagnetModel@{AltermagnetModel}}
+\doxysubsubsection{\texorpdfstring{AltermagnetModel()}{AltermagnetModel()}}
+{\footnotesize\ttfamily \label{class_altermagnet_model_a2d03e6ca5ab43b1604ca3d6b68d443f6} 
+Altermagnet\+Model\+::\+Altermagnet\+Model (\begin{DoxyParamCaption}\item[{double}]{t}{ = {\ttfamily 1.0}, }\item[{double}]{J}{ = {\ttfamily 0.1}, }\item[{double}]{lambda}{ = {\ttfamily 0.2}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor with default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Hopping amplitude \\
+\hline
+{\em J} & Spin splitting parameter \\
+\hline
+{\em lambda} & Spin-\/orbit coupling strength \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_altermagnet_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_altermagnet_model_ad2df36afb86f114af3c7674a37af7436}\index{AltermagnetModel@{AltermagnetModel}!Hk@{Hk}}
+\index{Hk@{Hk}!AltermagnetModel@{AltermagnetModel}}
+\doxysubsubsection{\texorpdfstring{Hk()}{Hk()}}
+{\footnotesize\ttfamily \label{class_altermagnet_model_ad2df36afb86f114af3c7674a37af7436} 
+Mat Altermagnet\+Model\+::\+Hk (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. 
+
+The \doxylink{class_hamiltonian}{Hamiltonian} includes scalar hopping, altermagnetic anisotropic spin splitting, 
+
+Implements \mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hamiltonian}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{altermagnet_8hpp}{altermagnet.\+hpp}}\end{DoxyCompactItemize}

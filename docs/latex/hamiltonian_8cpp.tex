@@ -1,0 +1,29 @@
+\doxysection{src/hamiltonian.cpp File Reference}
+\hypertarget{hamiltonian_8cpp}{}\label{hamiltonian_8cpp}\index{src/hamiltonian.cpp@{src/hamiltonian.cpp}}
+
+
+\doxylink{class_hamiltonian}{Hamiltonian} class implementation
+
+This file implements the eigensystem method for the \doxylink{class_hamiltonian}{Hamiltonian} class. The eigensystem method computes the eigenvalues and eigenvectors of the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at a given wavevector k using Eigen\textquotesingle{}s Self\+Adjoint\+Eigen\+Solver.  
+
+
+{\ttfamily \#include "{}hamiltonian.\+hpp"{}}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+Include dependency graph for hamiltonian.\+cpp\+:
+% FIG 0
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_hamiltonian}{Hamiltonian} class implementation
+
+This file implements the eigensystem method for the \doxylink{class_hamiltonian}{Hamiltonian} class. The eigensystem method computes the eigenvalues and eigenvectors of the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at a given wavevector k using Eigen\textquotesingle{}s Self\+Adjoint\+Eigen\+Solver. 
+
+The \doxylink{class_hamiltonian}{Hamiltonian} matrix is expected to be Hermitian, and the method will throw an exception if the eigensystem computation fails. 
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+{\em evals} & \\
+\hline
+{\em evecs} & \\
+\hline
+\end{DoxyParams}

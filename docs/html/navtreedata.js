@@ -43,7 +43,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"altermagnet_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

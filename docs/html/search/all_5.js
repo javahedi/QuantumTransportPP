@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['haldane_2ehpp_0',['haldane.hpp',['../haldane_8hpp.html',1,'']]],
-  ['haldanemodel_1',['HaldaneModel',['../class_haldane_model.html',1,'HaldaneModel'],['../class_haldane_model.html#ae52ece48508806fbca6fe94b53b335d8',1,'HaldaneModel::HaldaneModel()']]],
-  ['hamiltonian_2',['Hamiltonian',['../class_hamiltonian.html',1,'']]],
-  ['hamiltonian_2ehpp_3',['hamiltonian.hpp',['../hamiltonian_8hpp.html',1,'']]],
-  ['hk_4',['Hk',['../class_haldane_model.html#ad9b35321b542cf468906981ec273e2fb',1,'HaldaneModel::Hk()'],['../class_hamiltonian.html#a46459b155254cadaa9bd411039facfed',1,'Hamiltonian::Hk()'],['../class_kane_mele_model.html#a40bae8563d7a35150f8900320c0b75ea',1,'KaneMeleModel::Hk()']]]
+  ['generatemesh_0',['generateMesh',['../class_mesh.html#a72db534f9ded1b35a1349799131125ef',1,'Mesh']]],
+  ['getenergygrid_1',['getEnergyGrid',['../class_d_o_s.html#a4218a7db7663d2e1c6551feba7ee7a87',1,'DOS']]],
+  ['getkpoints_2',['getKPoints',['../class_mesh.html#aaec5db1881fd20906f7c5d986b9fea60',1,'Mesh']]],
+  ['groupvelocity_3',['groupVelocity',['../class_band_structure.html#a94d867b21a82355d8a87abd6100d8f2f',1,'BandStructure::groupVelocity()'],['../class_tight_binding_square.html#ab042b84e8e1644f5a29df168c39e475d',1,'TightBindingSquare::groupVelocity()']]]
 ];

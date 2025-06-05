@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boltzmannsolver_0',['BoltzmannSolver',['../class_boltzmann_solver.html#a18fade5fa10121e4d4f5b5e7c28242d7',1,'BoltzmannSolver']]]
+  ['altermagnetmodel_0',['AltermagnetModel',['../class_altermagnet_model.html#a2d03e6ca5ab43b1604ca3d6b68d443f6',1,'AltermagnetModel']]]
 ];

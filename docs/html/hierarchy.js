@@ -6,6 +6,7 @@ var hierarchy =
     [ "BoltzmannSolver", "class_boltzmann_solver.html", null ],
     [ "DOS", "class_d_o_s.html", null ],
     [ "Hamiltonian", "class_hamiltonian.html", [
+      [ "AltermagnetModel", "class_altermagnet_model.html", null ],
       [ "HaldaneModel", "class_haldane_model.html", null ],
       [ "KaneMeleModel", "class_kane_mele_model.html", null ]
     ] ],
