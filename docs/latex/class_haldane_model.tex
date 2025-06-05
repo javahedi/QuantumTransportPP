@@ -1,0 +1,98 @@
+\doxysection{Haldane\+Model Class Reference}
+\hypertarget{class_haldane_model}{}\label{class_haldane_model}\index{HaldaneModel@{HaldaneModel}}
+
+
+Inheritance diagram for Haldane\+Model\+:
+% FIG 0
+
+
+Collaboration diagram for Haldane\+Model\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_haldane_model_ae52ece48508806fbca6fe94b53b335d8}{Haldane\+Model}} (double t1=1.\+0, double t2=0.\+1, double phi=M\+\_\+\+PI/2.\+0, double M=0.\+2)
+\begin{DoxyCompactList}\small\item\em Constructor with default parameters. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_haldane_model_ad9b35321b542cf468906981ec273e2fb}{Hk}} (const Vec \&k) const override
+\begin{DoxyCompactList}\small\item\em Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries eigensystem} (const Vec \&k, Eigen\+::\+Vector\+Xd \&evals, Eigen\+::\+Matrix\+Xcd \&evecs) const
+\begin{DoxyCompactList}\small\item\em Return the eigenvalues and eigenvectors of H(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_haldane_model_a6202f3f8bd815ed9eaa7d3d8ff229fef}\label{class_haldane_model_a6202f3f8bd815ed9eaa7d3d8ff229fef} 
+double {\bfseries t1}
+\item 
+\Hypertarget{class_haldane_model_a96ac9d787c959001a296b59e4d0aa31d}\label{class_haldane_model_a96ac9d787c959001a296b59e4d0aa31d} 
+double {\bfseries t2}
+\item 
+\Hypertarget{class_haldane_model_aecdcf0a014efcb7ee05569e27ba3f4ef}\label{class_haldane_model_aecdcf0a014efcb7ee05569e27ba3f4ef} 
+double {\bfseries phi}
+\item 
+\Hypertarget{class_haldane_model_aa10eaecb6d3b5303d08c0a6db27d7a50}\label{class_haldane_model_aa10eaecb6d3b5303d08c0a6db27d7a50} 
+double {\bfseries M}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\item 
+using {\bfseries Mat} = Eigen\+::\+Matrix\+Xcd
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_haldane_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_haldane_model_ae52ece48508806fbca6fe94b53b335d8}\index{HaldaneModel@{HaldaneModel}!HaldaneModel@{HaldaneModel}}
+\index{HaldaneModel@{HaldaneModel}!HaldaneModel@{HaldaneModel}}
+\doxysubsubsection{\texorpdfstring{HaldaneModel()}{HaldaneModel()}}
+{\footnotesize\ttfamily \label{class_haldane_model_ae52ece48508806fbca6fe94b53b335d8} 
+Haldane\+Model\+::\+Haldane\+Model (\begin{DoxyParamCaption}\item[{double}]{t1}{ = {\ttfamily 1.0}, }\item[{double}]{t2}{ = {\ttfamily 0.1}, }\item[{double}]{phi}{ = {\ttfamily M\+\_\+PI~/~2.0}, }\item[{double}]{M}{ = {\ttfamily 0.2}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor with default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t1} & NN hopping amplitude \\
+\hline
+{\em t2} & NNN hopping amplitude \\
+\hline
+{\em phi} & NNN complex phase \\
+\hline
+{\em M} & sublattice mass \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Default values\+: t1 = 1.\+0, t2 = 0.\+1, phi = π/2, M = 0.\+2
+\end{DoxyNote}
+The Haldane model describes a two-\/dimensional topological insulator with a non-\/trivial band structure. 
+
+\label{doc-func-members}
+\Hypertarget{class_haldane_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_haldane_model_ad9b35321b542cf468906981ec273e2fb}\index{HaldaneModel@{HaldaneModel}!Hk@{Hk}}
+\index{Hk@{Hk}!HaldaneModel@{HaldaneModel}}
+\doxysubsubsection{\texorpdfstring{Hk()}{Hk()}}
+{\footnotesize\ttfamily \label{class_haldane_model_ad9b35321b542cf468906981ec273e2fb} 
+Mat Haldane\+Model\+::\+Hk (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. 
+
+
+
+Implements \mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hamiltonian}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{haldane_8hpp}{haldane.\+hpp}}\end{DoxyCompactItemize}

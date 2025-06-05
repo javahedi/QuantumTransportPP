@@ -1,0 +1,39 @@
+\doxysection{haldane.\+hpp}
+\hypertarget{haldane_8hpp_source}{}\label{haldane_8hpp_source}\index{include/haldane.hpp@{include/haldane.hpp}}
+\mbox{\hyperlink{haldane_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_haldane_model_ae52ece48508806fbca6fe94b53b335d8}{HaldaneModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{double}\ t1;\ \ \ \ \ \textcolor{comment}{//\ NN\ hopping}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{double}\ t2;\ \ \ \ \ \textcolor{comment}{//\ NNN\ hopping}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{double}\ phi;\ \ \ \ \textcolor{comment}{//\ NNN\ complex\ phase}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{double}\ M;\ \ \ \ \ \ \textcolor{comment}{//\ sublattice\ mass}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_haldane_model_ae52ece48508806fbca6fe94b53b335d8}{HaldaneModel}}(\textcolor{keywordtype}{double}\ t1\ =\ 1.0,\ \textcolor{keywordtype}{double}\ t2\ =\ 0.1,\ \textcolor{keywordtype}{double}\ phi\ =\ M\_PI\ /\ 2.0,\ \textcolor{keywordtype}{double}\ M\ =\ 0.2)}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ :\ t1(t1),\ t2(t2),\ phi(phi),\ M(M)\ \{\}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ Mat\ \mbox{\hyperlink{class_haldane_model_ad9b35321b542cf468906981ec273e2fb}{Hk}}(\textcolor{keyword}{const}\ Vec\&\ k)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std::complex\_literals;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::cos,\ std::sin;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::complex<double>\ I(0,1);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ kx\ =\ k(0),\ ky\ =\ k(1);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::complex<double>\ f\ =\ t1\ *\ (1.0\ +\ std::exp(-\/I\ *\ kx)\ +\ std::exp(-\/I\ *\ (kx\ /\ 2\ +\ std::sqrt(3)\ *\ ky\ /\ 2)));}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_x\ =\ f.real();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_y\ =\ f.imag();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\_z\ =\ M\ -\/\ 2.0\ *\ t2\ *\ sin(phi)\ *\ (sin(kx)\ -\/\ sin(kx\ /\ 2\ +\ std::sqrt(3)\ *\ ky\ /\ 2));}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Mat\ H(2,\ 2);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ H\ <<\ d\_z,\ d\_x\ -\/\ I\ *\ d\_y,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_x\ +\ I\ *\ d\_y,\ -\/d\_z;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ H;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+
+\end{DoxyCode}

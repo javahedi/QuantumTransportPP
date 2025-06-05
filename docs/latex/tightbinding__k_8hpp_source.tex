@@ -1,0 +1,30 @@
+\doxysection{tightbinding\+\_\+k.\+hpp}
+\hypertarget{tightbinding__k_8hpp_source}{}\label{tightbinding__k_8hpp_source}\index{include/tightbinding\_k.hpp@{include/tightbinding\_k.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bandstructure_8hpp}{bandstructure.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }TightBindingSquare\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_band_structure}{BandStructure}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{double}\ t;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ TightBindingSquare(\textcolor{keywordtype}{double}\ t\_in\ =\ 1.0)\ :\ t(t\_in)\ \{\}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_tight_binding_square_af19efba607547ef7dfee542ccb45c8a1}{energy}}(\textcolor{keyword}{const}\ Vec\&\ k)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/2.0\ *\ t\ *\ (std::cos(k(0))\ +\ std::cos(k(1)));}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ Vec\ \mbox{\hyperlink{class_tight_binding_square_ab042b84e8e1644f5a29df168c39e475d}{groupVelocity}}(\textcolor{keyword}{const}\ Vec\&\ k)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ Vec\ v;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ v(0)\ =\ 2\ *\ t\ *\ std::sin(k(0));}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ v(1)\ =\ 2\ *\ t\ *\ std::sin(k(1));}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ v(2)\ =\ 0.0;\ \textcolor{comment}{//\ No\ z-\/component\ in\ 2D}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,62 @@
+\doxysection{Mesh Class Reference}
+\hypertarget{class_mesh}{}\label{class_mesh}\index{Mesh@{Mesh}}
+
+
+Represents a k-\/point mesh for Brillouin zone sampling.  
+
+
+
+
+{\ttfamily \#include $<$mesh.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_mesh_aabccec2663e00026b4c1a24def9a4472}\label{class_mesh_aabccec2663e00026b4c1a24def9a4472} 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_mesh_ac3465297f6ecb00410b1ba0ce1f177e1}\label{class_mesh_ac3465297f6ecb00410b1ba0ce1f177e1} 
+{\bfseries Mesh} (size\+\_\+t nx, size\+\_\+t ny, size\+\_\+t nz=1, double kmax=2 \texorpdfstring{$\ast$}{*}M\+\_\+\+PI)
+\begin{DoxyCompactList}\small\item\em Construct a mesh with given dimensions. \end{DoxyCompactList}\item 
+\Hypertarget{class_mesh_aaec5db1881fd20906f7c5d986b9fea60}\label{class_mesh_aaec5db1881fd20906f7c5d986b9fea60} 
+const std\+::vector$<$ Vec $>$ \& {\bfseries get\+KPoints} () const
+\begin{DoxyCompactList}\small\item\em Return all k-\/points in the mesh. \end{DoxyCompactList}\item 
+\Hypertarget{class_mesh_a28e75ba3042956e93ed2fba045b32b39}\label{class_mesh_a28e75ba3042956e93ed2fba045b32b39} 
+size\+\_\+t {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em Return the number of k-\/points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_mesh_a72db534f9ded1b35a1349799131125ef}\label{class_mesh_a72db534f9ded1b35a1349799131125ef} 
+void {\bfseries generate\+Mesh} ()
+\begin{DoxyCompactList}\small\item\em Generate the mesh grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_mesh_a4fc9b5673271af6facdff5213fd392f7}\label{class_mesh_a4fc9b5673271af6facdff5213fd392f7} 
+size\+\_\+t {\bfseries nx\+\_\+}
+\item 
+\Hypertarget{class_mesh_afb4662ea6c7149ba835233db1f182274}\label{class_mesh_afb4662ea6c7149ba835233db1f182274} 
+size\+\_\+t {\bfseries ny\+\_\+}
+\item 
+\Hypertarget{class_mesh_a35b77c15279641d798cafe96fdf42316}\label{class_mesh_a35b77c15279641d798cafe96fdf42316} 
+size\+\_\+t {\bfseries nz\+\_\+}
+\item 
+\Hypertarget{class_mesh_a1c5dd49f32fed07017ad99d3280abbd0}\label{class_mesh_a1c5dd49f32fed07017ad99d3280abbd0} 
+double {\bfseries kmax\+\_\+}
+\item 
+\Hypertarget{class_mesh_a59fbf5390c3d447dea3cfd34daae6e52}\label{class_mesh_a59fbf5390c3d447dea3cfd34daae6e52} 
+std\+::vector$<$ Vec $>$ {\bfseries kpoints\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a k-\/point mesh for Brillouin zone sampling. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/mesh.\+hpp\item 
+src/mesh.\+cpp\end{DoxyCompactItemize}

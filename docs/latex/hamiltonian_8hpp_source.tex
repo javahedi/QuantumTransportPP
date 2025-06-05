@@ -1,0 +1,21 @@
+\doxysection{hamiltonian.\+hpp}
+\hypertarget{hamiltonian_8hpp_source}{}\label{hamiltonian_8hpp_source}\index{include/hamiltonian.hpp@{include/hamiltonian.hpp}}
+\mbox{\hyperlink{hamiltonian_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ }Vec\ =\ Eigen::Vector3d;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{using\ }Mat\ =\ Eigen::MatrixXcd;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_hamiltonian}{\string~Hamiltonian}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{virtual}\ Mat\ \mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hk}}(\textcolor{keyword}{const}\ Vec\&\ k)\ \textcolor{keyword}{const}\ =\ 0;\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(\textcolor{keyword}{const}\ Vec\&\ k,\ Eigen::VectorXd\&\ evals,\ Eigen::MatrixXcd\&\ evecs)\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \};}
+
+\end{DoxyCode}

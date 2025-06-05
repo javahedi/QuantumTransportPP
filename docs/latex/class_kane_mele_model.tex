@@ -1,0 +1,144 @@
+\doxysection{Kane\+Mele\+Model Class Reference}
+\hypertarget{class_kane_mele_model}{}\label{class_kane_mele_model}\index{KaneMeleModel@{KaneMeleModel}}
+
+
+Kane-\/\+Mele model for a two-\/dimensional topological insulator.  
+
+
+
+
+{\ttfamily \#include $<$kane\+\_\+mele.\+hpp$>$}
+
+
+
+Inheritance diagram for Kane\+Mele\+Model\+:
+% FIG 0
+
+
+Collaboration diagram for Kane\+Mele\+Model\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_kane_mele_model_a91404f7a1f482ad9ced46c213d919a1a}{Kane\+Mele\+Model}} (double t\+\_\+=1.\+0, double so\+\_\+=0.\+1, double v\+\_\+=0.\+2, bool rashba=false)
+\begin{DoxyCompactList}\small\item\em Constructor with default parameters. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}{Hk}} (const Vec \&k) const override
+\begin{DoxyCompactList}\small\item\em Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries eigensystem} (const Vec \&k, Eigen\+::\+Vector\+Xd \&evals, Eigen\+::\+Matrix\+Xcd \&evecs) const
+\begin{DoxyCompactList}\small\item\em Return the eigenvalues and eigenvectors of H(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}{t}} = 1.\+0
+\item 
+\Hypertarget{class_kane_mele_model_abd8d6fe90be156753662fc360236d409}\label{class_kane_mele_model_abd8d6fe90be156753662fc360236d409} 
+double {\bfseries lambda\+\_\+\+SO} = 0.\+1
+\item 
+\Hypertarget{class_kane_mele_model_acf97f033b87318e405d059f8e0eafbb8}\label{class_kane_mele_model_acf97f033b87318e405d059f8e0eafbb8} 
+double {\bfseries lambda\+\_\+v} = 0.\+2
+\item 
+\Hypertarget{class_kane_mele_model_abf1c18982373225110e763517734c046}\label{class_kane_mele_model_abf1c18982373225110e763517734c046} 
+bool {\bfseries include\+\_\+\+Rashba} = false
+\item 
+\Hypertarget{class_kane_mele_model_aa4e583cc066896310b0eb31f662195f6}\label{class_kane_mele_model_aa4e583cc066896310b0eb31f662195f6} 
+double {\bfseries lambda\+\_\+R} = 0.\+0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\item 
+using {\bfseries Mat} = Eigen\+::\+Matrix\+Xcd
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kane-\/\+Mele model for a two-\/dimensional topological insulator. 
+
+\label{doc-constructors}
+\Hypertarget{class_kane_mele_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_kane_mele_model_a91404f7a1f482ad9ced46c213d919a1a}\index{KaneMeleModel@{KaneMeleModel}!KaneMeleModel@{KaneMeleModel}}
+\index{KaneMeleModel@{KaneMeleModel}!KaneMeleModel@{KaneMeleModel}}
+\doxysubsubsection{\texorpdfstring{KaneMeleModel()}{KaneMeleModel()}}
+{\footnotesize\ttfamily \label{class_kane_mele_model_a91404f7a1f482ad9ced46c213d919a1a} 
+Kane\+Mele\+Model\+::\+Kane\+Mele\+Model (\begin{DoxyParamCaption}\item[{double}]{t\+\_\+}{ = {\ttfamily 1.0}, }\item[{double}]{so\+\_\+}{ = {\ttfamily 0.1}, }\item[{double}]{v\+\_\+}{ = {\ttfamily 0.2}, }\item[{bool}]{rashba}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor with default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+} & Hopping parameter (default\+: 1.\+0) \\
+\hline
+{\em so\+\_\+} & Spin-\/orbit coupling strength (default\+: 0.\+1) \\
+\hline
+{\em v\+\_\+} & Sublattice potential (default\+: 0.\+2) \\
+\hline
+{\em rashba} & Include Rashba coupling if true (default\+: false)\\
+\hline
+\end{DoxyParams}
+The Kane-\/\+Mele model describes a two-\/dimensional topological insulator with spin-\/orbit coupling and Rashba interaction. 
+
+\label{doc-func-members}
+\Hypertarget{class_kane_mele_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}\index{KaneMeleModel@{KaneMeleModel}!Hk@{Hk}}
+\index{Hk@{Hk}!KaneMeleModel@{KaneMeleModel}}
+\doxysubsubsection{\texorpdfstring{Hk()}{Hk()}}
+{\footnotesize\ttfamily \label{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea} 
+Mat Kane\+Mele\+Model\+::\+Hk (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Return the \doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) at wavevector k. 
+
+The \doxylink{class_hamiltonian}{Hamiltonian} is a 4x4 matrix that includes the effects of spin-\/orbit coupling and Rashba interaction. 
+\begin{DoxyParams}{Parameters}
+{\em k} & Wavevector in reciprocal space \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_hamiltonian}{Hamiltonian} matrix H(k) as a 4x4 complex matrix 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The \doxylink{class_hamiltonian}{Hamiltonian} is constructed using Pauli matrices and includes a sublattice part similar to graphene. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hamiltonian}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_kane_mele_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}\index{KaneMeleModel@{KaneMeleModel}!t@{t}}
+\index{t@{t}!KaneMeleModel@{KaneMeleModel}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \label{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a} 
+double Kane\+Mele\+Model\+::t = 1.\+0}
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Hopping parameter \\
+\hline
+{\em lambda\+\_\+\+SO} & Spin-\/orbit coupling strength \\
+\hline
+{\em lambda\+\_\+v} & Sublattice potential \\
+\hline
+{\em rashba} & Include Rashba coupling if true \\
+\hline
+{\em lambda\+\_\+R} & Rashba coupling strength \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/kane\+\_\+mele.\+hpp\end{DoxyCompactItemize}

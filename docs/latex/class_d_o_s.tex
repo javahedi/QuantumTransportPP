@@ -1,0 +1,75 @@
+\doxysection{DOS Class Reference}
+\hypertarget{class_d_o_s}{}\label{class_d_o_s}\index{DOS@{DOS}}
+
+
+Density of States (\doxylink{class_d_o_s}{DOS}) calculator for solid-\/state systems.  
+
+
+
+
+{\ttfamily \#include $<$dos.\+hpp$>$}
+
+
+
+Collaboration diagram for DOS\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_d_o_s_a8c0bd2aac835a1d38ef53cd7c307663f}\label{class_d_o_s_a8c0bd2aac835a1d38ef53cd7c307663f} 
+{\bfseries DOS} (const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \&H, const \mbox{\hyperlink{class_mesh}{Mesh}} \&mesh)
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_d_o_s}{DOS} calculator with given \doxylink{class_hamiltonian}{Hamiltonian} and mesh. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_d_o_s_a15f594dab2cfb276b7ff6c04d665ba37}{compute\+DOS}} (double Emin, double Emax, int n\+Bins, double sigma)
+\item 
+\Hypertarget{class_d_o_s_aeb1e34e0bd6d18e7f3402561a19e3d75}\label{class_d_o_s_aeb1e34e0bd6d18e7f3402561a19e3d75} 
+std\+::vector$<$ double $>$ {\bfseries compute\+Projected\+DOS} (double E\+\_\+min, double E\+\_\+max, int N\+\_\+bins, double eta, int orbital\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Compute projected \doxylink{class_d_o_s}{DOS} for a specific orbital index. \end{DoxyCompactList}\item 
+\Hypertarget{class_d_o_s_a4218a7db7663d2e1c6551feba7ee7a87}\label{class_d_o_s_a4218a7db7663d2e1c6551feba7ee7a87} 
+const std\+::vector$<$ double $>$ \& {\bfseries get\+Energy\+Grid} () const
+\begin{DoxyCompactList}\small\item\em Get the energy grid used for the \doxylink{class_d_o_s}{DOS} histogram. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_d_o_s_a90827922ba76e3fa693912d2f10eebd2}\label{class_d_o_s_a90827922ba76e3fa693912d2f10eebd2} 
+const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \& {\bfseries H}
+\item 
+\Hypertarget{class_d_o_s_aceefd769539708ecd2c410557ea82317}\label{class_d_o_s_aceefd769539708ecd2c410557ea82317} 
+const \mbox{\hyperlink{class_mesh}{Mesh}} \& {\bfseries mesh}
+\item 
+\Hypertarget{class_d_o_s_a280bde5ea51d925dd7297dec622227aa}\label{class_d_o_s_a280bde5ea51d925dd7297dec622227aa} 
+std\+::vector$<$ double $>$ {\bfseries energy\+\_\+grid\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Density of States (\doxylink{class_d_o_s}{DOS}) calculator for solid-\/state systems. 
+
+\label{doc-func-members}
+\Hypertarget{class_d_o_s_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_o_s_a15f594dab2cfb276b7ff6c04d665ba37}\index{DOS@{DOS}!computeDOS@{computeDOS}}
+\index{computeDOS@{computeDOS}!DOS@{DOS}}
+\doxysubsubsection{\texorpdfstring{computeDOS()}{computeDOS()}}
+{\footnotesize\ttfamily \label{class_d_o_s_a15f594dab2cfb276b7ff6c04d665ba37} 
+std\+::vector$<$ double $>$ DOS\+::compute\+DOS (\begin{DoxyParamCaption}\item[{double}]{Emin}{, }\item[{double}]{Emax}{, }\item[{int}]{n\+Bins}{, }\item[{double}]{sigma}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Emin} & Minimum energy for \doxylink{class_d_o_s}{DOS} calculation \\
+\hline
+{\em Emax} & Maximum energy for \doxylink{class_d_o_s}{DOS} calculation \\
+\hline
+{\em n\+Bins} & Number of energy bins for histogram \\
+\hline
+{\em sigma} & Gaussian smearing width (in same units as eigenvalues) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of \doxylink{class_d_o_s}{DOS} values for each energy bin
+\end{DoxyReturn}
+The \doxylink{class_d_o_s}{DOS} is computed by integrating the density of states over the specified energy range. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dos.\+hpp\item 
+src/dos.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,75 @@
+\doxysection{Tight\+Binding\+Square Class Reference}
+\hypertarget{class_tight_binding_square}{}\label{class_tight_binding_square}\index{TightBindingSquare@{TightBindingSquare}}
+
+
+Inheritance diagram for Tight\+Binding\+Square\+:
+% FIG 0
+
+
+Collaboration diagram for Tight\+Binding\+Square\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_tight_binding_square_a0ba9153d817678e79f6bff111a29e19a}\label{class_tight_binding_square_a0ba9153d817678e79f6bff111a29e19a} 
+{\bfseries Tight\+Binding\+Square} (double t\+\_\+in=1.\+0)
+\item 
+double \mbox{\hyperlink{class_tight_binding_square_af19efba607547ef7dfee542ccb45c8a1}{energy}} (const Vec \&k) const override
+\begin{DoxyCompactList}\small\item\em Energy dispersion ε(k) \end{DoxyCompactList}\item 
+Vec \mbox{\hyperlink{class_tight_binding_square_ab042b84e8e1644f5a29df168c39e475d}{group\+Velocity}} (const Vec \&k) const override
+\begin{DoxyCompactList}\small\item\em Group velocity ∇k ε(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_band_structure}{Band\+Structure}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Band\+Structure} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_tight_binding_square_a38333af824a0388730ec06a283707da9}\label{class_tight_binding_square_a38333af824a0388730ec06a283707da9} 
+double {\bfseries t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{class_band_structure}{Band\+Structure}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_tight_binding_square_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_tight_binding_square_af19efba607547ef7dfee542ccb45c8a1}\index{TightBindingSquare@{TightBindingSquare}!energy@{energy}}
+\index{energy@{energy}!TightBindingSquare@{TightBindingSquare}}
+\doxysubsubsection{\texorpdfstring{energy()}{energy()}}
+{\footnotesize\ttfamily \label{class_tight_binding_square_af19efba607547ef7dfee542ccb45c8a1} 
+double Tight\+Binding\+Square\+::energy (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Energy dispersion ε(k) 
+
+
+
+Implements \mbox{\hyperlink{class_band_structure_a4bd1086d545b58f8f1f7b0342c88e8e8}{Band\+Structure}}.
+
+\Hypertarget{class_tight_binding_square_ab042b84e8e1644f5a29df168c39e475d}\index{TightBindingSquare@{TightBindingSquare}!groupVelocity@{groupVelocity}}
+\index{groupVelocity@{groupVelocity}!TightBindingSquare@{TightBindingSquare}}
+\doxysubsubsection{\texorpdfstring{groupVelocity()}{groupVelocity()}}
+{\footnotesize\ttfamily \label{class_tight_binding_square_ab042b84e8e1644f5a29df168c39e475d} 
+Vec Tight\+Binding\+Square\+::group\+Velocity (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Group velocity ∇k ε(k) 
+
+
+
+Implements \mbox{\hyperlink{class_band_structure_a94d867b21a82355d8a87abd6100d8f2f}{Band\+Structure}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/tightbinding\+\_\+k.\+hpp\end{DoxyCompactItemize}

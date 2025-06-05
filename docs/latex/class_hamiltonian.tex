@@ -1,0 +1,48 @@
+\doxysection{Hamiltonian Class Reference}
+\hypertarget{class_hamiltonian}{}\label{class_hamiltonian}\index{Hamiltonian@{Hamiltonian}}
+
+
+Inheritance diagram for Hamiltonian\+:
+% FIG 0
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_hamiltonian_a20bd03183f52081272adf1c9236b28bc}\label{class_hamiltonian_a20bd03183f52081272adf1c9236b28bc} 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\item 
+\Hypertarget{class_hamiltonian_a7a8093178687eb46f93f050053226005}\label{class_hamiltonian_a7a8093178687eb46f93f050053226005} 
+using {\bfseries Mat} = Eigen\+::\+Matrix\+Xcd
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Mat \mbox{\hyperlink{class_hamiltonian_a46459b155254cadaa9bd411039facfed}{Hk}} (const Vec \&k) const =0
+\begin{DoxyCompactList}\small\item\em Return complex matrix H(k) \end{DoxyCompactList}\item 
+\Hypertarget{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}\label{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3} 
+virtual void {\bfseries eigensystem} (const Vec \&k, Eigen\+::\+Vector\+Xd \&evals, Eigen\+::\+Matrix\+Xcd \&evecs) const
+\begin{DoxyCompactList}\small\item\em Return the eigenvalues and eigenvectors of H(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_hamiltonian_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hamiltonian_a46459b155254cadaa9bd411039facfed}\index{Hamiltonian@{Hamiltonian}!Hk@{Hk}}
+\index{Hk@{Hk}!Hamiltonian@{Hamiltonian}}
+\doxysubsubsection{\texorpdfstring{Hk()}{Hk()}}
+{\footnotesize\ttfamily \label{class_hamiltonian_a46459b155254cadaa9bd411039facfed} 
+virtual Mat Hamiltonian\+::\+Hk (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Return complex matrix H(k) 
+
+
+
+Implemented in \mbox{\hyperlink{class_haldane_model_ad9b35321b542cf468906981ec273e2fb}{Haldane\+Model}}, and \mbox{\hyperlink{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}{Kane\+Mele\+Model}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.\+hpp}}\item 
+src/hamiltonian.\+cpp\end{DoxyCompactItemize}

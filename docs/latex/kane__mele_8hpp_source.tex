@@ -1,0 +1,72 @@
+\doxysection{kane\+\_\+mele.\+hpp}
+\hypertarget{kane__mele_8hpp_source}{}\label{kane__mele_8hpp_source}\index{include/kane\_mele.hpp@{include/kane\_mele.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unsupported/Eigen/KroneckerProduct>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_kane_mele_model_a91404f7a1f482ad9ced46c213d919a1a}{KaneMeleModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}{t}}\ =\ 1.0;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hopping\ parameter}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{double}\ lambda\_SO\ =\ 0.1;\ \textcolor{comment}{//\ Spin-\/orbit\ coupling\ strength}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{double}\ lambda\_v\ =\ 0.2\ ;\ \textcolor{comment}{//\ sublattice\ potential}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ include\_Rashba\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{double}\ lambda\_R\ =\ 0.0;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_kane_mele_model_a91404f7a1f482ad9ced46c213d919a1a}{KaneMeleModel}}(\textcolor{keywordtype}{double}\ t\_=1.0,\ \textcolor{keywordtype}{double}\ so\_=0.1,\ \textcolor{keywordtype}{double}\ v\_=0.2,\ \textcolor{keywordtype}{bool}\ rashba=\textcolor{keyword}{false})\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}{t}}(t\_),\ lambda\_SO(so\_),\ lambda\_v(v\_),\ include\_Rashba(rashba)\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ Mat\ \mbox{\hyperlink{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}{Hk}}(\textcolor{keyword}{const}\ Vec\&\ k)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std::complex\_literals;\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ kx\ =\ k(0),\ ky\ =\ k(1);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::complex<double>\ I(0,\ 1);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pauli\ matrices}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Eigen::Matrix2cd\ sigma\_x,\ sigma\_y,\ sigma\_z;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ sigma\_x\ <<\ 0,\ 1,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ sigma\_y\ <<\ 0,\ -\/I,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I,\ 0;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ sigma\_z\ <<\ 1,\ 0,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ -\/1;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sublattice\ part\ (similar\ to\ graphene)}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//double\ f\_re\ =\ \ std::cos(kx)\ +\ 2.0\ *\ std::cos(kx\ /\ 2.0)\ *\ std::cos(std::sqrt(3)\ *\ ky\ /\ 2.0);}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//double\ f\_im\ =\ -\/std::sin(kx)\ -\/\ 2.0\ *\ std::sin(kx\ /\ 2.0)\ *\ std::cos(std::sqrt(3)\ *\ ky\ /\ 2.0);}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::complex<double>\ f\ =\ f\_re\ +\ I\ *\ f\_im;}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::complex<double>\ f\ =\ std::exp(I*kx)\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 2.0\ *\ std::exp(I*kx/2.0)\ *\ std::cos(std::sqrt(3)*ky/2.0);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ 2x2\ H(k)\ ignoring\ spin}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Eigen::Matrix2cd\ H0;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ H0\ =\ -\/\mbox{\hyperlink{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}{t}}\ *\ f.real()\ *\ sigma\_x\ -\/\ \mbox{\hyperlink{class_kane_mele_model_a27da50881bf74bf4076b3c1ecdeed94a}{t}}\ *\ f.imag()\ *\ sigma\_y\ +\ lambda\_v\ *\ sigma\_z;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spin-\/orbit\ term:\ 2x2\ σ\_z\ ⊗\ s\_z\ =>\ expands\ to\ 4x4}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ Eigen::Matrix4cd\ H\ =\ Eigen::Matrix4cd::Zero();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ H.block<2,2>(0,0)\ =\ H0\ +\ lambda\_SO\ *\ sigma\_z;\ \ \textcolor{comment}{//\ spin\ up}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ H.block<2,2>(2,2)\ =\ H0\ -\/\ lambda\_SO\ *\ sigma\_z;\ \ \ \textcolor{comment}{//\ spin\ down}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verify\ time-\/reversal\ symmetry:\ TH(k)T⁻¹\ =\ H(-\/k)}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ Eigen::Matrix4cd\ T\ =\ Eigen::kroneckerProduct(sigma\_x,\ Eigen::Matrix2cd::Identity());}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ T\ *=\ I;\ \ \textcolor{comment}{//\ T\ =\ iσ\_x\ ⊗\ I}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ assert((T\ *\ \mbox{\hyperlink{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}{Hk}}(k)\ *\ T.inverse()\ -\/\ \mbox{\hyperlink{class_kane_mele_model_a40bae8563d7a35150f8900320c0b75ea}{Hk}}(-\/k)).norm()\ <\ 1e-\/10);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rashba\ coupling\ (if\ needed)}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (include\_Rashba)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ H.block<2,2>(0,2)\ =\ lambda\_R*(std::sin(kx)*sigma\_x\ -\/\ std::sin(ky)*sigma\_y);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ H.block<2,2>(2,0)\ =\ H.block<2,2>(0,2).adjoint();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ H;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \};}
+
+\end{DoxyCode}

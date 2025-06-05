@@ -1,0 +1,75 @@
+\doxysection{Kubo\+Solver Class Reference}
+\hypertarget{class_kubo_solver}{}\label{class_kubo_solver}\index{KuboSolver@{KuboSolver}}
+
+
+Kubo-\/\+Greenwood solver for calculating the conductivity tensor.  
+
+
+
+
+{\ttfamily \#include $<$kubo.\+hpp$>$}
+
+
+
+Collaboration diagram for Kubo\+Solver\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_kubo_solver_a6a694927d05936deb6c897213c383d21}\label{class_kubo_solver_a6a694927d05936deb6c897213c383d21} 
+{\bfseries Kubo\+Solver} (const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \&H, const \mbox{\hyperlink{class_mesh}{Mesh}} \&mesh, double eta=1e-\/3, bool temperature\+\_\+in\+\_\+kelvin=false, double energy\+\_\+scale=1.\+0)
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_kubo_solver}{Kubo\+Solver} with given \doxylink{class_hamiltonian}{Hamiltonian} and mesh. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix3d \mbox{\hyperlink{class_kubo_solver_a12c7aa6332570fa26e946f4a1df04b2f}{conductivity}} (double Ef, double T)
+\begin{DoxyCompactList}\small\item\em Compute real part of conductivity tensor σ\+\_\+ij. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_kubo_solver_a17ba98c8de549a47f0eb3ca50435f1c0}\label{class_kubo_solver_a17ba98c8de549a47f0eb3ca50435f1c0} 
+const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \& {\bfseries H}
+\item 
+\Hypertarget{class_kubo_solver_a7bf45f30600b353d8d87d5b4eaa7a4d8}\label{class_kubo_solver_a7bf45f30600b353d8d87d5b4eaa7a4d8} 
+const \mbox{\hyperlink{class_mesh}{Mesh}} \& {\bfseries mesh}
+\item 
+\Hypertarget{class_kubo_solver_a2538bbb7631500d3790c5b3ec4a83b34}\label{class_kubo_solver_a2538bbb7631500d3790c5b3ec4a83b34} 
+double {\bfseries eta}
+\item 
+\Hypertarget{class_kubo_solver_a0a99f27c09f56fb4d3beefb816405724}\label{class_kubo_solver_a0a99f27c09f56fb4d3beefb816405724} 
+bool {\bfseries temperature\+\_\+in\+\_\+kelvin}
+\item 
+\Hypertarget{class_kubo_solver_aa2a19508df042edae0ea9430aace519d}\label{class_kubo_solver_aa2a19508df042edae0ea9430aace519d} 
+double {\bfseries energy\+\_\+scale}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kubo-\/\+Greenwood solver for calculating the conductivity tensor. 
+
+\label{doc-func-members}
+\Hypertarget{class_kubo_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_kubo_solver_a12c7aa6332570fa26e946f4a1df04b2f}\index{KuboSolver@{KuboSolver}!conductivity@{conductivity}}
+\index{conductivity@{conductivity}!KuboSolver@{KuboSolver}}
+\doxysubsubsection{\texorpdfstring{conductivity()}{conductivity()}}
+{\footnotesize\ttfamily \label{class_kubo_solver_a12c7aa6332570fa26e946f4a1df04b2f} 
+Eigen\+::\+Matrix3d Kubo\+Solver\+::conductivity (\begin{DoxyParamCaption}\item[{double}]{Ef}{, }\item[{double}]{T}{}\end{DoxyParamCaption})}
+
+
+
+Compute real part of conductivity tensor σ\+\_\+ij. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ef} & Fermi energy \\
+\hline
+{\em T} & Temperature in Kelvin (if temperature\+\_\+in\+\_\+kelvin is true) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Conductivity tensor σ\+\_\+ij as a 3x3 matrix 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/kubo.\+hpp\item 
+src/kubo.\+cpp\end{DoxyCompactItemize}

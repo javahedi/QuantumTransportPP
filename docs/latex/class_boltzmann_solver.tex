@@ -1,0 +1,106 @@
+\doxysection{Boltzmann\+Solver Class Reference}
+\hypertarget{class_boltzmann_solver}{}\label{class_boltzmann_solver}\index{BoltzmannSolver@{BoltzmannSolver}}
+
+
+Collaboration diagram for Boltzmann\+Solver\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_boltzmann_solver_a18fade5fa10121e4d4f5b5e7c28242d7}{Boltzmann\+Solver}} (const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \&H, const \mbox{\hyperlink{class_mesh}{Mesh}} \&mesh, double tau, bool temperature\+\_\+in\+\_\+kelvin=false, double energy\+\_\+scale=1.\+0)
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{class_boltzmann_solver_a86448e857efd5e1adfa8e92f2ab40fd7}{velocity}} (const Eigen\+::\+Vector3d \&k, int band, const Eigen\+::\+Vector3d \&E, double dk=1e-\/4) const
+\item 
+Eigen\+::\+Matrix3d \mbox{\hyperlink{class_boltzmann_solver_a7f7c3310b6054dc8c3469b3ea6ed313a}{conductivity}} (double Ef, double T, const Eigen\+::\+Vector3d \&Efield)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_boltzmann_solver_a111d76275fabb56ce754a8474eee2650}\label{class_boltzmann_solver_a111d76275fabb56ce754a8474eee2650} 
+const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \& {\bfseries H}
+\item 
+\Hypertarget{class_boltzmann_solver_a257ba19b70fa9fb6886b96c8d993d123}\label{class_boltzmann_solver_a257ba19b70fa9fb6886b96c8d993d123} 
+const \mbox{\hyperlink{class_mesh}{Mesh}} \& {\bfseries mesh}
+\item 
+\Hypertarget{class_boltzmann_solver_a3a224ed7874f7e425183967e1a60adf1}\label{class_boltzmann_solver_a3a224ed7874f7e425183967e1a60adf1} 
+double {\bfseries tau}
+\item 
+\Hypertarget{class_boltzmann_solver_a601caf9e953e1714a3a0458087230138}\label{class_boltzmann_solver_a601caf9e953e1714a3a0458087230138} 
+bool {\bfseries temperature\+\_\+in\+\_\+kelvin}
+\item 
+\Hypertarget{class_boltzmann_solver_a84fb5943712b03a4b3307e4d6b187300}\label{class_boltzmann_solver_a84fb5943712b03a4b3307e4d6b187300} 
+double {\bfseries energy\+\_\+scale}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_boltzmann_solver_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_boltzmann_solver_a18fade5fa10121e4d4f5b5e7c28242d7}\index{BoltzmannSolver@{BoltzmannSolver}!BoltzmannSolver@{BoltzmannSolver}}
+\index{BoltzmannSolver@{BoltzmannSolver}!BoltzmannSolver@{BoltzmannSolver}}
+\doxysubsubsection{\texorpdfstring{BoltzmannSolver()}{BoltzmannSolver()}}
+{\footnotesize\ttfamily \label{class_boltzmann_solver_a18fade5fa10121e4d4f5b5e7c28242d7} 
+Boltzmann\+Solver\+::\+Boltzmann\+Solver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}} \&}]{H}{, }\item[{const \mbox{\hyperlink{class_mesh}{Mesh}} \&}]{mesh}{, }\item[{double}]{tau}{, }\item[{bool}]{temperature\+\_\+in\+\_\+kelvin}{ = {\ttfamily false}, }\item[{double}]{energy\+\_\+scale}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em H} & \doxylink{class_hamiltonian}{Hamiltonian} model (must implement eigensystem) \\
+\hline
+{\em mesh} & k-\/point mesh in BZ \\
+\hline
+{\em tau} & relaxation time \\
+\hline
+{\em temperature\+\_\+in\+\_\+kelvin} & if true, T is interpreted in Kelvin \\
+\hline
+{\em energy\+\_\+scale} & energy unit (e.\+g., t1), used when converting k\+\_\+B T \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_boltzmann_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_boltzmann_solver_a7f7c3310b6054dc8c3469b3ea6ed313a}\index{BoltzmannSolver@{BoltzmannSolver}!conductivity@{conductivity}}
+\index{conductivity@{conductivity}!BoltzmannSolver@{BoltzmannSolver}}
+\doxysubsubsection{\texorpdfstring{conductivity()}{conductivity()}}
+{\footnotesize\ttfamily \label{class_boltzmann_solver_a7f7c3310b6054dc8c3469b3ea6ed313a} 
+Eigen\+::\+Matrix3d Boltzmann\+Solver\+::conductivity (\begin{DoxyParamCaption}\item[{double}]{Ef}{, }\item[{double}]{T}{, }\item[{const Eigen\+::\+Vector3d \&}]{Efield}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ef} & Fermi energy \\
+\hline
+{\em T} & Temperature in Kelvin (if temperature\+\_\+in\+\_\+kelvin is true) \\
+\hline
+{\em Efield} & Electric field vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Conductivity tensor σ\+\_\+ij as a 3x3 matrix 
+\end{DoxyReturn}
+\Hypertarget{class_boltzmann_solver_a86448e857efd5e1adfa8e92f2ab40fd7}\index{BoltzmannSolver@{BoltzmannSolver}!velocity@{velocity}}
+\index{velocity@{velocity}!BoltzmannSolver@{BoltzmannSolver}}
+\doxysubsubsection{\texorpdfstring{velocity()}{velocity()}}
+{\footnotesize\ttfamily \label{class_boltzmann_solver_a86448e857efd5e1adfa8e92f2ab40fd7} 
+Eigen\+::\+Vector3d Boltzmann\+Solver\+::velocity (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{k}{, }\item[{int}]{band}{, }\item[{const Eigen\+::\+Vector3d \&}]{E}{, }\item[{double}]{dk}{ = {\ttfamily 1e-\/4}}\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & k-\/point in reciprocal space \\
+\hline
+{\em band} & band index (0 for lowest band) \\
+\hline
+{\em E} & electric field vector \\
+\hline
+{\em dk} & small displacement in k-\/space for numerical differentiation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Group velocity at k-\/point k in band \textquotesingle{}band\textquotesingle{}
+\end{DoxyReturn}
+The group velocity is computed as the gradient of the energy with respect to k, and the anomalous velocity 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{boltzmann_8hpp}{boltzmann.\+hpp}}\item 
+src/boltzmann.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,60 @@
+\doxysection{Band\+Structure Class Reference}
+\hypertarget{class_band_structure}{}\label{class_band_structure}\index{BandStructure@{BandStructure}}
+
+
+Inheritance diagram for Band\+Structure\+:
+% FIG 0
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_band_structure_a9724cde7e0c6a81a0d2ceeb2d45d1fc8}\label{class_band_structure_a9724cde7e0c6a81a0d2ceeb2d45d1fc8} 
+using {\bfseries Vec} = Eigen\+::\+Vector3d
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_band_structure_ad81428af7a67fb98e09056d3b9b2e1b0}\label{class_band_structure_ad81428af7a67fb98e09056d3b9b2e1b0} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Band\+Structure} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup of derived classes. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{class_band_structure_a4bd1086d545b58f8f1f7b0342c88e8e8}{energy}} (const Vec \&k) const =0
+\begin{DoxyCompactList}\small\item\em Energy dispersion ε(k) \end{DoxyCompactList}\item 
+virtual Vec \mbox{\hyperlink{class_band_structure_a94d867b21a82355d8a87abd6100d8f2f}{group\+Velocity}} (const Vec \&k) const =0
+\begin{DoxyCompactList}\small\item\em Group velocity ∇k ε(k) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_band_structure_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_band_structure_a4bd1086d545b58f8f1f7b0342c88e8e8}\index{BandStructure@{BandStructure}!energy@{energy}}
+\index{energy@{energy}!BandStructure@{BandStructure}}
+\doxysubsubsection{\texorpdfstring{energy()}{energy()}}
+{\footnotesize\ttfamily \label{class_band_structure_a4bd1086d545b58f8f1f7b0342c88e8e8} 
+virtual double Band\+Structure\+::energy (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Energy dispersion ε(k) 
+
+
+
+Implemented in \mbox{\hyperlink{class_tight_binding_square_af19efba607547ef7dfee542ccb45c8a1}{Tight\+Binding\+Square}}.
+
+\Hypertarget{class_band_structure_a94d867b21a82355d8a87abd6100d8f2f}\index{BandStructure@{BandStructure}!groupVelocity@{groupVelocity}}
+\index{groupVelocity@{groupVelocity}!BandStructure@{BandStructure}}
+\doxysubsubsection{\texorpdfstring{groupVelocity()}{groupVelocity()}}
+{\footnotesize\ttfamily \label{class_band_structure_a94d867b21a82355d8a87abd6100d8f2f} 
+virtual Vec Band\+Structure\+::group\+Velocity (\begin{DoxyParamCaption}\item[{const Vec \&}]{k}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Group velocity ∇k ε(k) 
+
+
+
+Implemented in \mbox{\hyperlink{class_tight_binding_square_ab042b84e8e1644f5a29df168c39e475d}{Tight\+Binding\+Square}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{bandstructure_8hpp}{bandstructure.\+hpp}}\end{DoxyCompactItemize}

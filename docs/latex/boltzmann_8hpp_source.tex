@@ -1,0 +1,35 @@
+\doxysection{boltzmann.\+hpp}
+\hypertarget{boltzmann_8hpp_source}{}\label{boltzmann_8hpp_source}\index{include/boltzmann.hpp@{include/boltzmann.hpp}}
+\mbox{\hyperlink{boltzmann_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}mesh.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}geometry.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_boltzmann_solver_a18fade5fa10121e4d4f5b5e7c28242d7}{BoltzmannSolver}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_boltzmann_solver_a18fade5fa10121e4d4f5b5e7c28242d7}{BoltzmannSolver}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_mesh}{Mesh}}\&\ mesh,\ \textcolor{keywordtype}{double}\ tau,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ temperature\_in\_kelvin\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ energy\_scale\ =\ 1.0)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ :\ H(H),\ mesh(mesh),\ tau(tau),}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ temperature\_in\_kelvin(temperature\_in\_kelvin),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ energy\_scale(energy\_scale)\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Compute\ group\ velocity\ and\ anomalous\ velocity:\ v\ +\ Omega\ x\ E}}
+\DoxyCodeLine{00031\ \ \ \ \ Eigen::Vector3d\ \mbox{\hyperlink{class_boltzmann_solver_a86448e857efd5e1adfa8e92f2ab40fd7}{velocity}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \textcolor{keywordtype}{int}\ band,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ E,\ \textcolor{keywordtype}{double}\ dk\ =\ 1e-\/4)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Compute\ conductivity\ tensor\ σ\_ij\ via\ Boltzmann\ (RTA)}}
+\DoxyCodeLine{00038\ \ \ \ \ Eigen::Matrix3d\ \mbox{\hyperlink{class_boltzmann_solver_a7f7c3310b6054dc8c3469b3ea6ed313a}{conductivity}}(\textcolor{keywordtype}{double}\ Ef,\ \textcolor{keywordtype}{double}\ T,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ Efield);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_mesh}{Mesh}}\&\ mesh;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{double}\ tau;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ temperature\_in\_kelvin;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{double}\ energy\_scale;}
+\DoxyCodeLine{00046\ \};}
+
+\end{DoxyCode}

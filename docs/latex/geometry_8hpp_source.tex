@@ -1,0 +1,40 @@
+\doxysection{geometry.\+hpp}
+\hypertarget{geometry_8hpp_source}{}\label{geometry_8hpp_source}\index{include/geometry.hpp@{include/geometry.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hamiltonian_8hpp}{hamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00008\ \textcolor{comment}{(Fukui-\/Hatsugai-\/Suzuki)\ or\ discretized\ Berry\ curvature.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ berryCurvature(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_hamiltonian}{Hamiltonian}}\&\ H,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ k,\ \textcolor{keywordtype}{double}\ dk\ =\ 1e-\/3,\ \textcolor{keywordtype}{int}\ band\_index\ =\ 0)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }Vec\ =\ Eigen::Vector3d;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }std::arg,\ std::abs;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ Eigen::MatrixXcd\ u0,\ ux,\ uy,\ uxy;}
+\DoxyCodeLine{00020\ \ \ \ \ Eigen::VectorXd\ evals;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Eigenstates\ at\ the\ four\ corners\ of\ the\ plaquette}}
+\DoxyCodeLine{00023\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k,\ evals,\ u0);}
+\DoxyCodeLine{00024\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k\ +\ Vec(dk,\ 0,\ 0),\ evals,\ ux);}
+\DoxyCodeLine{00025\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k\ +\ Vec(dk,\ dk,\ 0),\ evals,\ uxy);}
+\DoxyCodeLine{00026\ \ \ \ \ H.\mbox{\hyperlink{class_hamiltonian_a5bc676693849954ed4e603562cfb14e3}{eigensystem}}(k\ +\ Vec(0,\ dk,\ 0),\ evals,\ uy);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Link\ variables\ (U(1)\ Wilson\ lines)}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{auto}\ U1\ =\ (u0.col(band\_index).adjoint()\ *\ ux.col(band\_index)).normalized();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{auto}\ U2\ =\ (ux.col(band\_index).adjoint()\ *\ uxy.col(band\_index)).normalized();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{auto}\ U3\ =\ (uxy.col(band\_index).adjoint()\ *\ uy.col(band\_index)).normalized();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{auto}\ U4\ =\ (uy.col(band\_index).adjoint()\ *\ u0.col(band\_index)).normalized();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Wilson\ loop\ and\ Berry\ curvature}}
+\DoxyCodeLine{00035\ \ \ \ \ std::complex<double>\ loop\ =\ U1\ *\ U2\ *\ U3\ *\ U4;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ curvature\ =\ arg(loop)\ /\ (dk\ *\ dk);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ curvature;}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}
