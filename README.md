@@ -1,5 +1,8 @@
 # QuantumTransport++
 
+[![docs](https://img.shields.io/badge/docs-Doxygen-blue.svg)](https://javahedi.github.io/QuantumTransportPP/)
+
+
 🚀 **QuantumTransport++** is a high-performance C++/Python hybrid framework for studying quantum transport phenomena in tight-binding models. It enables accurate and efficient simulations of **semiclassical dynamics**, **Berry curvature effects**, **Kubo linear response**, and **Boltzmann transport** — with quantum geometry built-in.
 
 ---
