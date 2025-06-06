@@ -24,4 +24,6 @@ Makefile
 # Temporary files
 *.tmp
 
-/data
+data/
+
+docs/
