@@ -17,7 +17,7 @@ int main() {
     HaldaneModel H(t1, t2, phi);
 
     // Relaxation time and temperature
-   double Ef = 0.0;            // Fermi energy (unitless)
+    double Ef = 0.0;            // Fermi energy (unitless)
     double T = 0.01;            // Temperature (unitless)
     double eta = 1e-2;          // Broadening
 
@@ -26,7 +26,7 @@ int main() {
                            false,  // temperature_in_kelvin
                            1.0);   // energy_scale
 
-    Eigen::Matrix3d sigma = solver.conductivity(Ef, T);
+    auto [sigma, alpha, kappa] = solver.computeTransportTensors(Ef, T);
 
     std::cout << "Conductivity tensor (σ_ij):\n" << sigma << std::endl;
 

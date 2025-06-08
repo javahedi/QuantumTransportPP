@@ -3,6 +3,9 @@
 #include "kubo.hpp"
 #include "boltzmann.hpp"
 #include "logInfo.hpp" 
+#include <fstream>
+
+using namespace QuantumTransport;
 
 int main() {
     // Parameters for the Haldane model
@@ -20,6 +23,8 @@ int main() {
     const double E_scale = t1; // Energy scale for the model
 
     const Eigen::Vector3d Efield(1.0, 0.0, 0.0);  // x-direction
+    const Eigen::Vector3d gradT(1.0, 0.0, 0.0); // Temperature gradient in x-direction
+    const Eigen::Vector3d Bfield(0.0, 0.0, 0.0);  // x-direction
 
     Mesh mesh(40, 40, 1, 1.0);
 
@@ -33,10 +38,10 @@ int main() {
         HaldaneModel H(t1, t2, M, phi);
 
         KuboSolver kubo(H, mesh, eta, temp_in_K, E_scale);
-        Eigen::Matrix3d sig_kubo = kubo.conductivity(Ef, T);
+        auto [sig_kubo, alpha, kappa]  = kubo.computeTransportTensors(Ef, T);
 
         BoltzmannSolver bolt(H, mesh, tau, temp_in_K, E_scale);
-        Eigen::Matrix3d sig_bolt = bolt.conductivity(Ef, T, Efield);
+        auto [sig_bolt, alpha_bolt] = bolt.computeTransportTensors(Ef, T, gradT, Efield, Bfield);
 
         out << phi << ","
             << sig_kubo(0, 0) << "," << sig_kubo(0, 1) << ","

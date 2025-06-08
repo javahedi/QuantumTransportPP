@@ -65,6 +65,7 @@ var NAVTREEINDEX0 =
 "index.html":[],
 "kane__mele_8hpp_source.html":[1,0,0,7],
 "kubo_8hpp_source.html":[1,0,0,8],
+"log_info_8hpp.html":[1,0,0,9],
 "log_info_8hpp_source.html":[1,0,0,9],
 "mesh_8hpp_source.html":[1,0,0,10],
 "pages.html":[],

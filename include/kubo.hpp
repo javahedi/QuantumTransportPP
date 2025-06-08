@@ -11,11 +11,12 @@ public:
     KuboSolver(const Hamiltonian& H, const Mesh& mesh, double eta = 1e-3,
                bool temperature_in_kelvin = false, double energy_scale = 1.0);
 
-    /// @brief Compute real part of conductivity tensor σ_ij
+    /// @brief Compute conductivity, thermoelectric, and thermal conductivity tensors
     /// @param Ef Fermi energy
-    /// @param T Temperature in Kelvin (if temperature_in_kelvin is true)
-    /// @return Conductivity tensor σ_ij as a 3x3 matrix
-    Eigen::Matrix3d conductivity(double Ef, double T);
+    /// @param T Temperature
+    /// @return Tuple of {sigma, alpha, kappa}
+    std::tuple<Eigen::Matrix3d, Eigen::Matrix3d, Eigen::Matrix3d> computeTransportTensors(double Ef, double T);
+
 
 private:
     const Hamiltonian& H;
@@ -23,4 +24,11 @@ private:
     double eta;
     bool temperature_in_kelvin;
     double energy_scale;
+
+
+    // Reusable buffers
+    mutable Eigen::VectorXd evals;
+    mutable Eigen::MatrixXcd evecs;
+    mutable std::array<Eigen::MatrixXcd, 3> velocity_matrices;
+    mutable Eigen::MatrixXcd dH_buffer;
 };

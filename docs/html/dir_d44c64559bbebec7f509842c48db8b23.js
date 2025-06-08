@@ -9,7 +9,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "hamiltonian.hpp", "hamiltonian_8hpp.html", "hamiltonian_8hpp" ],
     [ "kane_mele.hpp", "kane__mele_8hpp_source.html", null ],
     [ "kubo.hpp", "kubo_8hpp_source.html", null ],
-    [ "logInfo.hpp", "log_info_8hpp_source.html", null ],
+    [ "logInfo.hpp", "log_info_8hpp.html", "log_info_8hpp" ],
     [ "mesh.hpp", "mesh_8hpp_source.html", null ],
     [ "tightbinding_k.hpp", "tightbinding__k_8hpp_source.html", null ]
 ];

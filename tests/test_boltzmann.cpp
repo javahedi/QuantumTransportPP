@@ -21,15 +21,18 @@ int main() {
     double T = 0.01;           // Unitless (or Kelvin if enabled)
     double Ef = 0.0;           // Fermi level
     Eigen::Vector3d Efield(1.0, 0.0, 0.0); // E field in x direction
+    Eigen::Vector3d gradT(1.0, 0.0, 0.0); //  in x direction
+
+    Eigen::Vector3d Bfield(0.0, 0.0, 0.0); // Magnetic field (not used in this example)
 
     // Construct Boltzmann solver
     BoltzmannSolver solver(H, mesh, tau,
                            false,  // temperature_in_kelvin
                            1.0);   // energy_scale
 
-    Eigen::Matrix3d sigma = solver.conductivity(Ef, T, Efield);
+    auto [sigma, alpha]= solver.computeTransportTensors(Ef, T, gradT, Efield, Bfield);
 
     std::cout << "Conductivity tensor (σ_ij):\n" << sigma << std::endl;
-
+    std::cout << "Thermopower tensor (α_ij):\n" << alpha << std::endl;
     return 0;
 }

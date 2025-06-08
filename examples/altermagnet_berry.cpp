@@ -2,8 +2,10 @@
 #include "altermagnet.hpp"
 #include "geometry.hpp" 
 #include "logInfo.hpp"
+#include <fstream>
 
 
+using namespace QuantumTransport;
 
 int main() {
     AltermagnetModel altermagnet(1.0, 0.5, 0.1); // Example parameters

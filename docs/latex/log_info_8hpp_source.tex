@@ -1,29 +1,35 @@
 \doxysection{log\+Info.\+hpp}
 \hypertarget{log_info_8hpp_source}{}\label{log_info_8hpp_source}\index{include/logInfo.hpp@{include/logInfo.hpp}}
-
+\mbox{\hyperlink{log_info_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iomanip>}\ \ \textcolor{comment}{//\ for\ std::setprecision}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{comment}{//\ ANSI\ escape\ codes\ for\ colors}}
-\DoxyCodeLine{00008\ \textcolor{keyword}{const}\ std::string\ RESET\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}};}
-\DoxyCodeLine{00009\ \textcolor{keyword}{const}\ std::string\ BLUE\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[34m"{}};}
-\DoxyCodeLine{00010\ \textcolor{keyword}{const}\ std::string\ GREEN\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[32m"{}};}
-\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ std::string\ RED\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}};}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{comment}{//\ Simple\ logging\ function}}
-\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ logInfo(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ std::cout\ <<\ BLUE\ <<\ \textcolor{stringliteral}{"{}[INFO]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
-\DoxyCodeLine{00016\ \}}
-\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ logError(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
-\DoxyCodeLine{00018\ \ \ \ \ std::cerr\ <<\ RED\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
-\DoxyCodeLine{00019\ \}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ logSuccess(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
-\DoxyCodeLine{00022\ \ \ \ \ std::cout\ <<\ GREEN\ <<\ \textcolor{stringliteral}{"{}[SUCCESS]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
-\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ include/logInfo.hpp}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ LOG\_INFO\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ LOG\_INFO\_HPP}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }QuantumTransport\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ ANSI\ escape\ codes\ for\ colors}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ RESET\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ BLUE\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[34m"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ GREEN\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[32m"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ RED\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_info_8hpp_a7f681b6cf06d3c50f19af49c5e5b8c34}{logInfo}}(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::cout\ <<\ BLUE\ <<\ \textcolor{stringliteral}{"{}[INFO]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_info_8hpp_a04d607ab105749eb89eb263c32149b94}{logError}}(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::cerr\ <<\ RED\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_info_8hpp_af658e70e9fcd2bca1cf05ca8cdbca267}{logSuccess}}(\textcolor{keyword}{const}\ std::string\&\ msg)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::cout\ <<\ GREEN\ <<\ \textcolor{stringliteral}{"{}[SUCCESS]\ "{}}\ <<\ RESET\ <<\ msg\ <<\ std::endl;}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \}\ \textcolor{comment}{//\ namespace\ QuantumTransport}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOG\_INFO\_HPP}}
 
 \end{DoxyCode}

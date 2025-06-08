@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['mesh_0',['Mesh',['../class_mesh.html#ac3465297f6ecb00410b1ba0ce1f177e1',1,'Mesh']]]
+  ['logerror_0',['logError',['../log_info_8hpp.html#a04d607ab105749eb89eb263c32149b94',1,'QuantumTransport']]],
+  ['loginfo_1',['logInfo',['../log_info_8hpp.html#a7f681b6cf06d3c50f19af49c5e5b8c34',1,'QuantumTransport']]],
+  ['logsuccess_2',['logSuccess',['../log_info_8hpp.html#af658e70e9fcd2bca1cf05ca8cdbca267',1,'QuantumTransport']]]
 ];
