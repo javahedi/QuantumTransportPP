@@ -38,13 +38,13 @@ int main(int argc, char* argv[])  {
     }
 
     std::vector<double> lambdaList = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5}; ///< Lambda values for iteration
-    size_t N = 500; ///< Grid resolution
+    size_t N = 250; ///< Grid resolution
     Mesh mesh(N, N, 1, M_PI); ///< 2D mesh for calculations
 
     logInfo("Starting altermagnet conductivity calculation...");
 
     // Kubo and Boltzmann solver parameters
-    double Ef  = 0.0; ///< Fermi energy (unitless)
+    double Ef  = 0.5; ///< Fermi energy (unitless)
     double T   = 0.02; ///< Temperature (unitless)
     double eta = 1e-2; ///< Broadening for Kubo solver
     double tau = 100.0; ///< Relaxation time for Boltzmann solver
@@ -55,10 +55,9 @@ int main(int argc, char* argv[])  {
     #pragma omp parallel for
     for (const auto& lambda : lambdaList) {
 
-
         // Create unique filename for each lambda
         std::stringstream filename;
-        filename << std::fixed << std::setprecision(1) << "altermagnet_conductivity_EF0.0_lambda_" << lambda << ".csv";
+        filename << std::fixed << std::setprecision(1) << "altermagnet_conductivity_EF0.5_lambda_" << lambda << ".csv";
         logInfo("Writing results to " + filename.str() + "...");
 
         // Open output file for this lambda

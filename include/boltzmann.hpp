@@ -56,11 +56,16 @@ public:
     /// @param T: Temperature (in Kelvin if temperature_in_kelvin is true)
     /// @param Efield: Electric field vector
     /// @return tuble of conductivity tensor and thermopower tensor
+
     std::tuple<Eigen::Matrix3d, Eigen::Matrix3d> 
     computeTransportTensors(double Ef, double T, 
                             const Eigen::Vector3d& gradT,
                             const Eigen::Vector3d& Efield,
                             const Eigen::Vector3d& Bfield) const;
+
+
+    Eigen::Matrix3d secondDerivatives(const Eigen::Vector3d& k, int band, 
+                                      double dk) const;
 
 
 private:

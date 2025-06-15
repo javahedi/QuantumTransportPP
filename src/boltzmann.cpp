@@ -23,6 +23,40 @@ inline double fermi_derivative(double e, double Ef, double T,
 };
 
 
+Eigen::Matrix3d BoltzmannSolver::secondDerivatives(const Eigen::Vector3d& k, 
+                                                    int band, double dk) const {
+
+    Eigen::Matrix3d hessian = Eigen::Matrix3d::Zero();
+    Eigen::Vector3d dki, dkj;
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = i; j < 3; ++j) {
+            dki = Eigen::Vector3d::Zero();
+            dkj = Eigen::Vector3d::Zero();
+            dki(i) = dk;
+            dkj(j) = dk;
+
+            double epp, epm, emp, emm;
+
+            H.eigensystem(k + dki + dkj, evals_plus, evecs_dummy);
+            epp = evals_plus(band);
+            H.eigensystem(k + dki - dkj, evals_plus, evecs_dummy);
+            epm = evals_plus(band);
+            H.eigensystem(k - dki + dkj, evals_plus, evecs_dummy);
+            emp = evals_plus(band);
+            H.eigensystem(k - dki - dkj, evals_plus, evecs_dummy);
+            emm = evals_plus(band);
+
+            double second_derivative = (epp - epm - emp + emm) / (4.0 * dk * dk);
+            hessian(i, j) = second_derivative;
+            hessian(j, i) = second_derivative;
+        }
+    }
+
+    return hessian;
+};
+
+
 
 /// @brief Calculate the group velocity and anomalous velocity at a given k-point
 /// @param k k-point in reciprocal space
@@ -32,12 +66,12 @@ inline double fermi_derivative(double e, double Ef, double T,
 /// @param dk small displacement in k-space for numerical differentiation
 /// @return    VelocityResult containing group velocity and phase-space factor
 VelocityResult BoltzmannSolver::velocity(
-    double energy, double Ef, double T,
-    const Eigen::Vector3d& k, int band,
-    const Eigen::Vector3d& gradT,
-    const Eigen::Vector3d& E, 
-    const Eigen::Vector3d& B,  
-    double dk) const {
+                    double energy, double Ef, double T,
+                    const Eigen::Vector3d& k, int band,
+                    const Eigen::Vector3d& gradT,
+                    const Eigen::Vector3d& E, 
+                    const Eigen::Vector3d& B,  
+                    double dk) const {
     
     Eigen::Vector3d v_group;
 
@@ -95,6 +129,10 @@ BoltzmannSolver::computeTransportTensors(double Ef, double T,
     Eigen::Matrix3d sigma = Eigen::Matrix3d::Zero();
     Eigen::Matrix3d alpha = Eigen::Matrix3d::Zero();
     const double norm = 1.0 / mesh.size();
+    const double e = 1.0;           // unit charge (in units of e)
+    const double hbar = 1.0;        // assume ℏ = 1 in natural units or scale appropriately
+    const double dk = 1e-2;  // step size in momentum space for second derivatives
+
 
     for (const auto& k : mesh.getKPoints()) {
         //Eigen::VectorXd evals;
@@ -107,9 +145,9 @@ BoltzmannSolver::computeTransportTensors(double Ef, double T,
                                                     temperature_in_kelvin, 
                                                     energy_scale);
 
-            const auto vres = velocity(energy, Ef, T, k, band, gradT, Efield, Bfield); // <-- returns velocity & D_n
-            const Eigen::Vector3d v = vres.velocity;
-            const double D_n = vres.phaseSpaceFactor;
+            VelocityResult vres = velocity(energy, Ef, T, k, band, gradT, Efield, Bfield); // <-- returns velocity & D_n
+            Eigen::Vector3d v = vres.velocity;
+            double D_n = vres.phaseSpaceFactor;
 
             Eigen::Matrix3d vvT = v * v.transpose(); // Reuse for both tensors
 
@@ -119,6 +157,28 @@ BoltzmannSolver::computeTransportTensors(double Ef, double T,
 
             // α_ij = -eτ ∑ D_n (-∂f/∂E) (E-Ef)/T v_i v_j
             alpha += tau * D_n * dfde  * ((energy - Ef) / T) * vvT;
+
+            /*
+            // 2. B·correction terms (second order in τ)
+            if (Bfield.norm() > 1e-12) {
+                Eigen::Matrix3d hess = secondDerivatives(k, band, dk);
+
+                // Assuming B = (0, 0, Bz) only
+                double Bz = Bfield.z();
+
+                Eigen::Vector3d C;
+                C.x() = -v.x() * hess(0,1) + v.y() * hess(0,0);  // -vx ∂xy ε + vy ∂xx ε
+                C.y() = -v.x() * hess(0,1) + v.y() * hess(0,0);  // same as x in 2D symmetry
+                C.z() = 0.0;
+
+                double prefactor = -std::pow(e, 3) * std::pow(tau, 2) * Bz / std::pow(hbar, 3);
+                sigma += prefactor * dfde * (v * C.transpose());
+
+                double energyShift = (energy - Ef) / T;
+                double alphaPrefactor = prefactor * energyShift;
+                alpha += alphaPrefactor * dfde * (v * C.transpose());
+            }
+            */
         }
     }
 
