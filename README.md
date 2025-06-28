@@ -38,9 +38,6 @@ mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
 
-# Copy example configuration
-cp ../params.ini ./
-
 # Run an example
 ./bin/example_altermagnet_conductivity 4
 ```
@@ -76,18 +73,15 @@ cd build
 # Berry curvature calculation
 ./bin/example_altermagnet_berry
 
-# Run with custom config location
-./bin/example_altermagnet_conductivity 4 ../params.ini
+
 ```
 
 ## 📊 Post-Processing
 
 ```bash
 # Launch Jupyter notebook server from project root
-jupyter notebook postprocessing/
+jupyter notebook postprocessing/plot_berry.ipynb
 
-# Or generate plots directly
-python postprocessing/plot_conductivity.py
 ```
 
 ![Berry Curvature Visualization](postprocessing/berry_curvature_pyplot.png)
