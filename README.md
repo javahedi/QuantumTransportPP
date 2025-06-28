@@ -1,8 +1,8 @@
 # Quantum Transport in Altermagnetic Materials 🧲⚡
 
-![Project Banner](https://via.placeholder.com/800x200/1a237e/ffffff?text=Quantum+Transport+in+Altermagnets)
+![Project Banner](project-logo.png)
 
-A modern C++ toolkit for simulating quantum transport phenomena in altermagnetic materials using both Kubo and Boltzmann formalisms.
+A modern C++ toolkit for simulating quantum transport phenomena in altermagnetic materials, inspired by the groundbreaking work in Physical __Review X 12, 031042 (2022)__, using both Kubo and Boltzmann formalisms.
 
 ## 🌟 Key Features
 
@@ -83,7 +83,7 @@ tau = 100.0            # Relaxation time
 Jupyter notebooks are provided for visualization:
 
 ```bash
-jupyter notebook postprocessing/plot_conductivity.ipynb
+jupyter notebook postprocessing/plot_berry.ipynb
 ```
 
 ![Berry Curvature Visualization](postprocessing/berry_curvature_pyplot.png)
