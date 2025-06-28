@@ -86,8 +86,7 @@ Jupyter notebooks are provided for visualization:
 jupyter notebook postprocessing/plot_conductivity.ipynb
 ```
 
-![Example Plot](https://postprocessing/berry_curvature_pyplot.png)
-
+![Berry Curvature Visualization](postprocessing/berry_curvature_pyplot.png)
 ## 🧩 Code Structure
 
 ```
