@@ -14,6 +14,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
+
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
@@ -60,10 +61,11 @@ endfunction()
 
 
 # Example executables
-add_qt_executable(run_all examples/run_all.cpp)
-add_qt_executable(transport_phi_haldane examples/transport_phi_haldane.cpp)
-add_qt_executable(altermagnet_berry examples/altermagnet_berry.cpp)
-add_qt_executable(altermagnet_conductivity examples/altermagnet_conductivity.cpp)
+add_qt_executable(example_run_all examples/run_all.cpp)
+add_qt_executable(example_transport_phi_haldane examples/transport_phi_haldane.cpp)
+add_qt_executable(example_altermagnet_berry examples/altermagnet_berry.cpp)
+add_qt_executable(example_altermagnet_conductivity examples/altermagnet_conductivity.cpp)
+add_qt_executable(example_altermagnet_conductivity_v2 examples/altermagnet_conductivity_v2.cpp)
 
 # Test executables
 add_qt_executable(test_mesh tests/test_mesh.cpp)

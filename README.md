@@ -2,7 +2,7 @@
 
 ![Project Banner](project-logo.png)
 
-A modern C++ toolkit for simulating quantum transport phenomena in altermagnetic materials, inspired by the groundbreaking work in Physical __Review X 12, 031042 (2022)__, using both Kubo and Boltzmann formalisms.
+A modern C++ toolkit for simulating quantum transport phenomena in altermagnetic materials, inspired by the groundbreaking work in *Physical Review X 12, 031042 (2022)*, using both Kubo and Boltzmann formalisms.
 
 ## 🌟 Key Features
 
@@ -38,33 +38,19 @@ mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
 
+# Copy example configuration
+cp ../params.ini ./
+
 # Run an example
-./examples/altermagnet_conductivity
+./bin/example_altermagnet_conductivity 4
 ```
-
-### 🏗️ Build Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-DUSE_OPENMP=ON` | Enable parallel computation | ON |
-| `-DBUILD_TESTS=ON` | Build test suite | OFF |
-| `-DBUILD_DOCS=ON` | Build Doxygen documentation | OFF |
 
 ## 🧮 Running Simulations
 
-### Basic Usage
+### Configuration File
 
-```bash
-# Run conductivity calculations (4 threads)
-./examples/altermagnet_conductivity 4
+The `params.ini` file should be placed in your working directory (typically the build directory). An example configuration:
 
-# Compute Berry curvature
-./examples/altermagnet_berry
-```
-
-### Example Parameter File
-
-Create `params.ini`:
 ```ini
 [System]
 J = 0.0:1.0:0.025      # J values (start:end:step)
@@ -78,26 +64,46 @@ eta = 1e-2             # Kubo broadening
 tau = 100.0            # Relaxation time
 ```
 
-## 📊 Post-Processing
-
-Jupyter notebooks are provided for visualization:
+### Basic Usage
 
 ```bash
-jupyter notebook postprocessing/plot_berry.ipynb
+# Run from build directory
+cd build
+
+# Conductivity calculation (4 threads)
+./bin/example_altermagnet_conductivity 4
+
+# Berry curvature calculation
+./bin/example_altermagnet_berry
+
+# Run with custom config location
+./bin/example_altermagnet_conductivity 4 ../params.ini
+```
+
+## 📊 Post-Processing
+
+```bash
+# Launch Jupyter notebook server from project root
+jupyter notebook postprocessing/
+
+# Or generate plots directly
+python postprocessing/plot_conductivity.py
 ```
 
 ![Berry Curvature Visualization](postprocessing/berry_curvature_pyplot.png)
+
 ## 🧩 Code Structure
 
 ```
 quantum-transport-altermagnets/
+├── bin/                # Compiled executables (in build directory)
+├── params.ini          # Example configuration file
 ├── include/            # Header files
-├── src/               # Core implementation
-├── examples/          # Ready-to-run examples
-├── data/              # Output data
-├── postprocessing/    # Visualization scripts
-├── tests/             # Unit tests
-└── docs/              # Documentation
+├── src/                # Core implementation
+├── examples/           # Example source code
+├── data/               # Output data
+├── postprocessing/     # Visualization scripts
+└── tests/              # Unit tests
 ```
 
 ## 🤝 Contributing
@@ -115,3 +121,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 ```bash
 git clone https://github.com/yourusername/quantum-transport-altermagnets.git
 ```
+
