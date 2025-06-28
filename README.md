@@ -1,134 +1,128 @@
-# QuantumTransport++
+# Quantum Transport in Altermagnetic Materials 🧲⚡
 
-[![docs](https://img.shields.io/badge/docs-Doxygen-blue.svg)](https://javahedi.github.io/QuantumTransportPP/)
+![Project Banner](https://via.placeholder.com/800x200/1a237e/ffffff?text=Quantum+Transport+in+Altermagnets)
 
+A modern C++ toolkit for simulating quantum transport phenomena in altermagnetic materials using both Kubo and Boltzmann formalisms.
 
-🚀 **QuantumTransport++** is a high-performance C++/Python hybrid framework for studying quantum transport phenomena in tight-binding models. It enables accurate and efficient simulations of **semiclassical dynamics**, **Berry curvature effects**, **Kubo linear response**, and **Boltzmann transport** — with quantum geometry built-in.
+## 🌟 Key Features
 
----
+- **Advanced Transport Calculations**: Compute conductivity (σ) and thermoelectric (α) tensors
+- **Dual Solver Support**: Both Kubo and Boltzmann transport formalisms implemented
+- **Parallel Computing**: OpenMP-accelerated calculations
+- **Comprehensive Analysis**: Berry curvature, DOS, and band structure capabilities
+- **Modern C++**: Clean, templated code with Eigen integration
+- **Visualization Ready**: Jupyter notebooks for post-processing included
 
-## 🔬 Key Features
-
-- ⚛️ **Tight-binding models in momentum space** — general N-band Hamiltonians
-- 🌀 **Berry curvature**, **quantum metric**, and **Berry dipole** computations
-- 📈 **Kubo conductivity** solver (linear response)
-- 🚗 **Semiclassical Boltzmann solver** with Berry corrections
-- 🔁 (Planned) **Floquet field support**: time-periodic `A(t)` fields
-- 🧠 Automatic **Brillouin zone meshing** (Monkhorst-Pack, hexagonal)
-- 🐍 Python bindings via **pybind11**
-- 📊 Example Jupyter notebooks for reproducible plots
-
----
-## Tight-binding models
-
-| Model               | Type                 | Key Features                             |
-| ------------------- | -------------------- | ---------------------------------------- |
-| **Kane-Mele**       | 2D Topological       | SOC + sublattice potential               |
-| **BHZ Model**       | 2D Quantum Spin Hall | 4×4 Dirac-like                           |
-| **Weyl Model**      | 3D Topological       | Linear crossings, chirality              |
-| **Graphene**        | 2D Semimetal         | Simple honeycomb TB                      |
-| **Chern Insulator** | 2-band               | Trivial/Topological phase tuning         |
-| **Haldane**         | 2D Chern Insulator   | Complex hopping, breaks TRS, topological |
-
-
-## 📦 Installation
+## 📦 Installation & Setup
 
 ### Prerequisites
 
-- C++17 compiler
-- CMake ≥ 3.15
-- Python ≥ 3.7
-- [pybind11](https://github.com/pybind/pybind11)
+- **Compiler**: GCC ≥ 9.0 or Clang ≥ 10.0
+- **Dependencies**:
+  - Eigen3 (≥ 3.3.7)
+  - OpenMP
+  - CMake (≥ 3.12)
+  - Python (for post-processing)
 
-### Build Instructions
+### 🚀 Quick Start (Linux/macOS)
 
 ```bash
-git clone https://github.com/yourusername/QuantumTransportPP.git
-cd QuantumTransportPP
+# Clone the repository
+git clone https://github.com/yourusername/quantum-transport-altermagnets.git
+cd quantum-transport-altermagnets
+
+# Create build directory
 mkdir build && cd build
-cmake ..
-make
-````
 
-This builds the Python module `qtpp`.
+# Configure and build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j4
 
----
-
-## 🐍 Python Usage Example
-
-```python
-import qtpp
-
-model = qtpp.TightBindingModel(2)  # e.g. 2-band model
-res = qtpp.compute_boltzmann_transport(model, Ef=0.1, Nk=50)
-
-print("σ_xx:", res.conductivity[0])
-print("σ_xy (Berry curvature):", res.hall_conductivity)
-print("Berry dipole:", res.berry_dipole_magnitude)
+# Run an example
+./examples/altermagnet_conductivity
 ```
 
-See `python/example_kubo.ipynb` and `example_boltzmann.ipynb` for full tutorials.
+### 🏗️ Build Options
 
----
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-DUSE_OPENMP=ON` | Enable parallel computation | ON |
+| `-DBUILD_TESTS=ON` | Build test suite | OFF |
+| `-DBUILD_DOCS=ON` | Build Doxygen documentation | OFF |
 
-## 📂 Project Structure
+## 🧮 Running Simulations
+
+### Basic Usage
+
+```bash
+# Run conductivity calculations (4 threads)
+./examples/altermagnet_conductivity 4
+
+# Compute Berry curvature
+./examples/altermagnet_berry
+```
+
+### Example Parameter File
+
+Create `params.ini`:
+```ini
+[System]
+J = 0.0:1.0:0.025      # J values (start:end:step)
+lambda = 0.0,0.1,0.5   # Spin-orbit coupling values
+mesh_points = 250      # k-point resolution
+
+[Transport]
+Ef = 0.5               # Fermi energy
+temperature = 0.02     # Reduced temperature
+eta = 1e-2             # Kubo broadening
+tau = 100.0            # Relaxation time
+```
+
+## 📊 Post-Processing
+
+Jupyter notebooks are provided for visualization:
+
+```bash
+jupyter notebook postprocessing/plot_conductivity.ipynb
+```
+
+![Example Plot](https://via.placeholder.com/600x400/4caf50/ffffff?text=Conductivity+vs+Exchange+Coupling)
+
+## 🧩 Code Structure
 
 ```
-QuantumTransport++/
-├── include/           # C++ headers
-├── src/               # C++ source files
-├── python/            # Example notebooks
-├── bindings.cpp       # pybind11 interface
-├── CMakeLists.txt     # Build system
-├── README.md
+quantum-transport-altermagnets/
+├── include/            # Header files
+├── src/               # Core implementation
+├── examples/          # Ready-to-run examples
+├── data/              # Output data
+├── postprocessing/    # Visualization scripts
+├── tests/             # Unit tests
+└── docs/              # Documentation
 ```
 
----
+## 📚 Documentation
 
-## 📈 Output Formats
+Build documentation with:
+```bash
+cmake -DBUILD_DOCS=ON ..
+make docs
+```
 
-Simulation results (band structure, Berry curvature, conductivities) are exported as CSV or NumPy arrays for easy visualization using:
-
-* `matplotlib`, `seaborn` (Python)
-* `gnuplot`, `paraview` (optional)
-
----
-
-## 📌 Roadmap
-
-* [x] Band structure + eigen solver in k-space
-* [x] Berry curvature, quantum metric
-* [x] Kubo and Boltzmann transport
-* [ ] Time-dependent fields + Floquet formalism
-* [ ] Python package (`pip install quantumtransportpp`)
-* [ ] GUI / interactive viewer (optional)
-
----
+Then open `docs/html/index.html` in your browser.
 
 ## 🤝 Contributing
 
-Pull requests are welcome! For major changes, please open an issue first to discuss your ideas.
-
-We welcome:
-
-* New tight-binding models
-* Additional transport quantities
-* Numerical stability improvements
-* Parallelization or GPU backends
-
-
----
+We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md).
 
 ## 📜 License
 
-MIT License. See `LICENSE` file.
+MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-## 🧠 Acknowledgments
+**Get Started Now** - Unlock the secrets of quantum transport in altermagnets! ✨
 
-Inspired by the quantum geometry formalism, semiclassical theory, and nonlinear response frameworks.
-
----
-
-🧪 Built for researchers. Optimized for speed. Designed for insight.
+```bash
+git clone https://github.com/yourusername/quantum-transport-altermagnets.git
+```

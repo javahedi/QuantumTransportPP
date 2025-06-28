@@ -1,9 +1,9 @@
-/** \file main.cpp
+/** \file altermagnet_conductivity.cpp
  * \brief Computes conductivity for an altermagnet model using Kubo and Boltzmann solvers.
  * \details Iterates over J values (0.0 to 0.10, step 0.01) and lambda values, outputting
  *          xx and xy conductivity components to separate CSV files for each lambda
  *          (e.g., data/altermagnet_conductivity_lambda_0.0.csv).
- * \author [Your Name]
+ * \author Javad Vahedi
  * \date June 2025
  */
 
