@@ -86,7 +86,7 @@ Jupyter notebooks are provided for visualization:
 jupyter notebook postprocessing/plot_conductivity.ipynb
 ```
 
-![Example Plot](https://via.placeholder.com/600x400/4caf50/ffffff?text=Conductivity+vs+Exchange+Coupling)
+![Example Plot](https://postprocessing/berry_curvature_pyplot.png)
 
 ## 🧩 Code Structure
 
@@ -100,16 +100,6 @@ quantum-transport-altermagnets/
 ├── tests/             # Unit tests
 └── docs/              # Documentation
 ```
-
-## 📚 Documentation
-
-Build documentation with:
-```bash
-cmake -DBUILD_DOCS=ON ..
-make docs
-```
-
-Then open `docs/html/index.html` in your browser.
 
 ## 🤝 Contributing
 
